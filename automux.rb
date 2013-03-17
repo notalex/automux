@@ -1,5 +1,5 @@
 require 'yaml'
-require 'erb'
+require_relative 'mini_erb'
 require_relative 'tmux'
 require_relative 'tmux_window'
 require_relative 'tmux_pane'
@@ -16,11 +16,7 @@ class Automux
   def do
     path = File.join(File.dirname(__FILE__), 'erb/template')
     template = File.read(path)
-    custom_template = template.
-          gsub(/^\s+%(.+)$/, '%\1').
-          gsub(/^%=(.+)$/, '<%=\1 %> ')
-    erb = ERB.new(custom_template, nil, '%<>')
-    result = erb.result(tmux.get_binding).gsub(/\n\s*\n/, "\n")
+    result = MiniErb.new(template).result(tmux.get_binding)
     exec(result)
   end
 end
