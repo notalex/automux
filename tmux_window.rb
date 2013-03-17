@@ -36,12 +36,6 @@ class TmuxWindow
     @index = options['index'] || next_available_index
   end
 
-  def command
-    return nil unless options.is_a?(String)
-
-    options
-  end
-
 private
 
   def next_available_index
