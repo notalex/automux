@@ -4,7 +4,9 @@ require_relative 'tmux'
 require_relative 'tmux_window'
 require_relative 'tmux_pane'
 
-data = YAML.load_file('/home/alex/delete/sample.yml')
+def relative_path(path)
+  File.join(File.dirname(__FILE__), path)
+end
 
 class Automux
   attr_reader :tmux
@@ -14,12 +16,12 @@ class Automux
   end
 
   def do
-    path = File.join(File.dirname(__FILE__), 'erb/template')
-    template = File.read(path)
+    template = File.read(relative_path('erb/template'))
     result = MiniErb.new(template).result(tmux.get_binding)
     exec(result)
   end
 end
 
+data = YAML.load_file(relative_path('templates/sample.yml'))
 tmux = Automux.new(data)
 tmux.do
