@@ -10,7 +10,7 @@ class MiniErb < ERB
 private
 
   def erb_parseable_template(string)
-    string.gsub(/^\s+%(.+)$/, '%\1').
-           gsub(/^%=(.+)$/, '<%=\1 %> ')
+    string.gsub(/^\s*-(.+)$/, '%\1').
+           gsub(/^\s*=(.+)$/, '<%=\1 %> ')
   end
 end
