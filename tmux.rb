@@ -1,6 +1,6 @@
 module Tmux
   def new_window(number, name)
-    %[tmux new-window -t #{ session_name }:#{ number } -n #{ name }]
+    %[tmux new-window -t #{ session_name }:#{ number } -n #{ name } 2> /dev/null]
   end
 
   def run_command(number, command)
@@ -17,9 +17,5 @@ module Tmux
 
   def create_pane
     %[tmux split-window]
-  end
-
-  def send_command(command)
-    %[tmux send-keys #{ command } C-m]
   end
 end
