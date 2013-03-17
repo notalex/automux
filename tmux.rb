@@ -31,6 +31,6 @@ class Tmux
   end
 
   def windows
-    @windows ||= data['windows'].map { |data| TmuxWindow.new(data) }
+    @windows ||= data['windows'].map { |data| TmuxWindow.new(self, data) }
   end
 end
