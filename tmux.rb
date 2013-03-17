@@ -6,8 +6,8 @@ class Tmux
     @session_name = data['project_name']
   end
 
-  def new_window(number, name)
-    %[tmux new-window -t #{ session_name }:#{ number } -n #{ name } 2> /dev/null]
+  def new_window(window)
+    %[tmux new-window -t #{ session_name }:#{ window.index } -n #{ window.name } 2> /dev/null]
   end
 
   def run_command(number, command)
@@ -18,8 +18,8 @@ class Tmux
     %[tmux -u2 attach-session -t #{ session_name }]
   end
 
-  def select_layout(number, type)
-    %[tmux select-layout -t #{ session_name }:#{ number } #{ type }]
+  def select_layout(window)
+    %[tmux select-layout -t #{ session_name }:#{ window.index } #{ window.layout }]
   end
 
   def create_pane

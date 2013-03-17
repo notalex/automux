@@ -4,14 +4,14 @@ tmux start-server
 tmux -u2 new-session -d -s <%= session_name %>
 
 % windows.each do |window|
-  %= new_window(window.index, window.name)
+  %= new_window(window)
 
   % if window.has_panes?
     % window.panes.each do |pane|
       %= create_pane if pane.index > 0
       %= run_command window.index, pane.command
     % end
-    %= select_layout(window.index, window.layout)
+    %= select_layout(window)
   % else
     %= run_command(window.index, window.options)
   % end
