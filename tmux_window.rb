@@ -26,13 +26,29 @@ class TmuxWindow
     options['layout']
   end
 
+  def assigned_index
+    options['index'] || @index
+  end
+
   def index
-    tmux.windows.find_index(self)
+    return @index if @index
+
+    @index = options['index'] || next_available_index
   end
 
   def command
     return nil unless options.is_a?(String)
 
     options
+  end
+
+private
+
+  def next_available_index
+    i = 0
+    while tmux.windows.find { |window| window.assigned_index == i }
+      i += 1
+    end
+    i
   end
 end
