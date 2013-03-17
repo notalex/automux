@@ -10,7 +10,7 @@ class Tmux
     %[tmux new-window -t #{ session_name }:#{ window.index } -n #{ window.name } 2> /dev/null]
   end
 
-  def run_command(number, command)
+  def send_keys(number, command)
     %[tmux send-keys -t #{ session_name }:#{ number } "#{ command }" C-m]
   end
 

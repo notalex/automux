@@ -9,11 +9,11 @@ tmux -u2 new-session -d -s <%= session_name %>
   % if window.has_panes?
     % window.panes.each do |pane|
       %= create_pane if pane.index > 0
-      %= run_command window.index, pane.command
+      %= send_keys(window.index, pane.command)
     % end
     %= select_layout(window)
   % else
-    %= run_command(window.index, window.options)
+    %= send_keys(window.index, window.options)
   % end
 % end
 
