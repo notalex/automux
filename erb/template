@@ -13,7 +13,7 @@ tmux -u2 new-session -d -s <%= session_name %>
     % end
     %= select_layout(window)
   % else
-    %= send_keys(window.index, window.options)
+    %= send_keys(window.index, window.command)
   % end
 % end
 

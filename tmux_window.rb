@@ -26,4 +26,10 @@ class TmuxWindow
   def index
     tmux.windows.find_index(self)
   end
+
+  def command
+    return nil unless options.is_a?(String)
+
+    options
+  end
 end
