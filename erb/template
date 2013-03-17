@@ -1,7 +1,5 @@
-#!<%= ENV['SHELL'] || '/bin/bash' %>
-tmux start-server
-
-tmux -u2 new-session -d -s <%= session_name %>
+%= start_server
+%= new_session
 
 % windows.each do |window|
   %= new_window(window)

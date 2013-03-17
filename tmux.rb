@@ -6,6 +6,14 @@ class Tmux
     @session_name = data['project_name']
   end
 
+  def start_server
+    %[tmux start-server]
+  end
+
+  def new_session
+    %[tmux -u2 new-session -d -s #{ session_name }]
+  end
+
   def new_window(window)
     %[tmux new-window -t #{ session_name }:#{ window.index } 2> /dev/null]
   end
