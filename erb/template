@@ -11,9 +11,7 @@ tmux -u2 new-session -d -s <%= session_name %>
       %= create_pane if pane.index > 0
       %= send_keys(window.index, pane.command)
     % end
-    %= select_layout(window)
-  % else
-    %= send_keys(window.index, window.command)
+    %= select_layout(window) if window.layout
   % end
 % end
 

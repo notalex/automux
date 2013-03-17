@@ -1,14 +1,17 @@
 class TmuxWindow
-  attr_reader :options, :name, :tmux
+  attr_reader :options, :tmux
 
   def initialize(tmux, data)
     @tmux = tmux
-    @name = data.keys.first
-    @options = data.values.first
+    @options = data
+  end
+
+  def name
+    options['name']
   end
 
   def panes
-    return nil unless options.is_a?(Hash)
+    return nil unless options['panes']
 
     @panes ||= options['panes'].map { |command| TmuxPane.new(self, command) }
   end
@@ -20,7 +23,7 @@ class TmuxWindow
   def layout
     return nil unless options.is_a?(Hash)
 
-    options['layout'] || 'main-vertical'
+    options['layout']
   end
 
   def index
