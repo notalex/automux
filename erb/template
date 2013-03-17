@@ -5,6 +5,7 @@ tmux -u2 new-session -d -s <%= session_name %>
 
 % windows.each do |window|
   %= new_window(window)
+  %= rename_window(window)
 
   % if window.has_panes?
     % window.panes.each do |pane|

@@ -7,7 +7,11 @@ class Tmux
   end
 
   def new_window(window)
-    %[tmux new-window -t #{ session_name }:#{ window.index } -n #{ window.name } 2> /dev/null]
+    %[tmux new-window -t #{ session_name }:#{ window.index } 2> /dev/null]
+  end
+
+  def rename_window(window)
+    %[tmux rename-window -t #{ session_name }:#{ window.index } #{ window.name }]
   end
 
   def send_keys(number, command)
