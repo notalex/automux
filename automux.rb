@@ -11,29 +11,48 @@ class Tmux
   end
 
   def do
-    p data['tabs']
-    #%x[tmux start-server]
+    system %[tmux start-server]
     system %[tmux -u2 new-session -d -s #{ session_name }]
-    p %[tmux -u2 new-session -d -s #{ session_name }]
-    data['tabs'].each_with_index do |(tab_name, command), i|
-      new_window(i, tab_name)
-      run_command(i, command)
+    data['tabs'].each_with_index do |tab, i|
+      new_window(i, tab.keys.first) if i > 0
+      options = tab.values.first
+      if options.is_a?(Hash)
+        options['panes'].each_with_index do |pane, i|
+          create_pane if i > 0
+          send_command pane
+        end
+        select_layout i, options['layout']
+      else
+        run_command(i, options)
+      end
     end
     attach_session
   end
 
 private
-  
+
   def new_window(number, name)
-    %x[tmux new-window -t #{ session_name }:#{ number } #{ name }]
+    system %[tmux new-window -t #{ session_name }:#{ number } -n #{ name }]
   end
 
   def run_command(number, command)
-    %x[tmux send-keys -t #{ session_name }:#{ number } "#{ command }" C-m]
+    system %[tmux send-keys -t #{ session_name }:#{ number } "#{ command }" C-m]
   end
 
   def attach_session
-    %x[tmux -u2 attach-session -t #{ session_name }]
+    system %[tmux -u2 attach-session -t #{ session_name }]
+  end
+
+  def select_layout(number, name)
+    system %[tmux select-layout -t #{ session_name }:#{ number } #{ name }]
+  end
+
+  def create_pane
+    system %[tmux split-window]
+  end
+
+  def send_command(command)
+    system %[tmux send-keys #{ command } C-m]
   end
 end
 
