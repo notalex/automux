@@ -1,4 +1,11 @@
-module Tmux
+class Tmux
+  attr_reader :data, :session_name, :commands
+
+  def initialize(data)
+    @data = data
+    @session_name = data['project_name']
+  end
+
   def new_window(number, name)
     %[tmux new-window -t #{ session_name }:#{ number } -n #{ name } 2> /dev/null]
   end
@@ -17,5 +24,9 @@ module Tmux
 
   def create_pane
     %[tmux split-window]
+  end
+
+  def get_binding
+    binding
   end
 end

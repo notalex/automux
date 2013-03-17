@@ -5,12 +5,10 @@ require_relative 'tmux'
 data = YAML.load_file('/home/alex/delete/sample.yml')
 
 class Automux
-  include Tmux
-  attr_reader :data, :session_name, :commands
+  attr_reader :tmux
 
   def initialize(data)
-    @data = data
-    @session_name = data['project_name']
+    @tmux = Tmux.new(data)
   end
 
   def commands
@@ -24,7 +22,7 @@ class Automux
           gsub(/^\s+%(.+)$/, '%\1').
           gsub(/^%=(.+)$/, '<%=\1 %> ')
     erb = ERB.new(custom_template, nil, '%<>')
-    result = erb.result(binding).gsub(/\n\s*\n/, "\n")
+    result = erb.result(tmux.get_binding).gsub(/\n\s*\n/, "\n")
     exec(result)
   end
 end
