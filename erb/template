@@ -3,9 +3,9 @@ tmux start-server
 
 tmux -u2 new-session -d -s <%= session_name %>
 
-% data['tabs'].each_with_index do |tab, i|
-  %= new_window(i, tab.keys.first)
-  % options = tab.values.first
+% data['windows'].each_with_index do |window, i|
+  %= new_window(i, window.keys.first)
+  % options = window.values.first
 
   % if options.is_a?(Hash)
     % options['panes'].each_with_index do |pane, j|
