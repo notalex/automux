@@ -18,8 +18,8 @@ class Tmux
     %[tmux -u2 attach-session -t #{ session_name }]
   end
 
-  def select_layout(number, name)
-    %[tmux select-layout -t #{ session_name }:#{ number } #{ name }]
+  def select_layout(number, type)
+    %[tmux select-layout -t #{ session_name }:#{ number } #{ type }]
   end
 
   def create_pane
@@ -28,5 +28,9 @@ class Tmux
 
   def get_binding
     binding
+  end
+
+  def windows
+    @windows ||= data['windows'].map { |data| TmuxWindow.new(data) }
   end
 end

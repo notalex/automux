@@ -3,18 +3,17 @@ tmux start-server
 
 tmux -u2 new-session -d -s <%= session_name %>
 
-% data['windows'].each_with_index do |window, i|
-  %= new_window(i, window.keys.first)
-  % options = window.values.first
+% windows.each_with_index do |window, i|
+  %= new_window(i, window.name)
 
-  % if options.is_a?(Hash)
-    % options['panes'].each_with_index do |pane, j|
+  % if window.has_panes?
+    % window.panes.each_with_index do |pane, j|
       %= create_pane if j > 0
-      %= run_command i, pane
+      %= run_command i, pane.command
     % end
-    %= select_layout(i, options['layout'])
+    %= select_layout(i, window.layout)
   % else
-    %= run_command(i, options)
+    %= run_command(i, window.options)
   % end
 % end
 

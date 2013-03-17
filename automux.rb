@@ -1,6 +1,8 @@
 require 'yaml'
 require 'erb'
 require_relative 'tmux'
+require_relative 'tmux_window'
+require_relative 'tmux_pane'
 
 data = YAML.load_file('/home/alex/delete/sample.yml')
 
@@ -9,10 +11,6 @@ class Automux
 
   def initialize(data)
     @tmux = Tmux.new(data)
-  end
-
-  def commands
-    @commands ||= []
   end
 
   def do
