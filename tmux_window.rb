@@ -39,10 +39,7 @@ class TmuxWindow
 private
 
   def next_available_index
-    i = 0
-    while tmux.windows.find { |window| window.assigned_index == i }
-      i += 1
-    end
-    i
+    assigned_indexes = tmux.windows.map(&:assigned_index).compact
+    ((0..tmux.windows.length).to_a - assigned_indexes).first
   end
 end
