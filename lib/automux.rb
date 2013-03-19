@@ -4,10 +4,6 @@ require_relative 'automux/tmux'
 require_relative 'automux/tmux_window'
 require_relative 'automux/tmux_pane'
 
-def config_path
-  File.expand_path('../../data', __FILE__)
-end
-
 class AutomuxLoader
   include Automux::Tmux
   include Automux::MiniErb
@@ -19,8 +15,8 @@ class AutomuxLoader
   end
 
   def do
-    template = File.read(File.join(config_path, 'recipes/default'))
-    result = MiniErb.new(template).result(tmux.get_binding)
+    recipe = File.read(File.join(Gem.datadir('automux'), 'recipes/default'))
+    result = MiniErb.new(recipe).result(tmux.get_binding)
     exec(result)
   end
 end
