@@ -1,0 +1,8 @@
+#! /usr/bin/env ruby
+
+require_relative '../lib/automux'
+
+data = YAML.load_file(File.join(Gem.datadir('automux'), 'templates/sample.yml'))
+
+automux = AutomuxLoader.new(data)
+automux.do

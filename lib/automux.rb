@@ -20,7 +20,3 @@ class AutomuxLoader
     exec(result)
   end
 end
-
-data = YAML.load_file(File.join(config_path, 'templates/sample.yml'))
-automux = AutomuxLoader.new(data)
-automux.do
