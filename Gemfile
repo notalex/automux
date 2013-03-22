@@ -1,3 +1,6 @@
 source 'https://rubygems.org'
+require 'bundler'
 
-gemspec
+group :test do
+  gem 'cucumber'
+end

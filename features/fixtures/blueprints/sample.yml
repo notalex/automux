@@ -1,0 +1,20 @@
+project_name: test
+project_root: ~/
+windows:
+  - name: editor
+    layout: main-vertical
+    panes:
+      - ls
+      - top
+      - pwd
+  - name: htop
+    panes:
+      - htop
+  - name: tester
+    index: 1
+    panes:
+      - pwd
+  - name: zero
+    index: 0
+    panes:
+      - pwd

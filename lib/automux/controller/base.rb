@@ -10,7 +10,11 @@ module Automux
       end
 
       def render(result)
-        exec(result)
+        if ENV['AUTOMUX_ENV'] == 'test'
+          result
+        else
+          exec(result)
+        end
       end
     end
   end
