@@ -10,7 +10,7 @@ module Automux
       end
 
       def read
-        YAML.load_file(File.join(Automux::Paths.data, "templates/#{ name }.yml"))
+        YAML.load_file(File.join(Automux::Paths.data, "blueprints/#{ name }.yml"))
       end
     end
   end

@@ -1,5 +1,5 @@
 project_name: test
-project_root: ~/project/cribber
+project_root: ~/
 windows:
   - name: editor
     layout: main-vertical
