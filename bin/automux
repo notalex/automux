@@ -1,8 +1,10 @@
 #! /usr/bin/env ruby
 
-require_relative '../lib/automux'
+lib_path = File.expand_path('../../lib', __FILE__)
+$LOAD_PATH.unshift(lib_path) unless $LOAD_PATH.include?(lib_path)
 
-data = YAML.load_file(File.join(Gem.datadir('automux'), 'templates/sample.yml'))
+require 'automux'
 
-automux = AutomuxLoader.new(data)
-automux.do
+params = { blueprint_name: ARGV[0], recipe_name: 'default' }
+
+Automux::Controller::Recipes.new(params).automate

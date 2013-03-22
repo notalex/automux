@@ -1,7 +1,7 @@
 require 'erb'
 
 module Automux
-  module MiniErb
+  module Library
     class MiniErb < ERB
 
       def initialize(template)
@@ -9,7 +9,7 @@ module Automux
         super(modified_template, nil, '%<>')
       end
 
-    private
+      private ###
 
       def erb_parseable_template(string)
         string.gsub(/^\s*-(.+)$/, '%\1').
