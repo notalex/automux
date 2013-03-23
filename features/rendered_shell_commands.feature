@@ -58,3 +58,36 @@ In order to run the shell commands matching the given blueprint
 
       tmux -u2 attach-session -t test
       """
+
+  Scenario: Windows with clashing index values
+    Given I provide the following blueprint
+      """
+      project_name: test
+      project_root: ~/
+      windows:
+        - name: editor
+          panes:
+            - vim
+          index: 1
+        - name: top
+          panes:
+            - top
+          index: 1
+      """
+    When Automux processes this blueprint
+    Then the rendered sequence of shell commands should be
+      """
+      tmux start-server
+      tmux -u2 new-session -d -s test
+      tmux new-window -t test:1 2> /dev/null
+      tmux rename-window -t test:1 editor
+
+      tmux send-keys -t test:1 "vim" C-m
+
+      tmux new-window -t test:0 2> /dev/null
+      tmux rename-window -t test:0 top
+
+      tmux send-keys -t test:0 "top" C-m
+
+      tmux -u2 attach-session -t test
+      """

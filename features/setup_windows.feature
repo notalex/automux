@@ -1,0 +1,19 @@
+Feature: Creating Window objects from user provided data
+
+    Scenario: Window with different indexes
+    Given I have provided a blueprint with the following window information
+      | name   | index  | panes   |
+      | first  |        | top     |
+      | second |        | pwd     |
+      | third  | 1      | ls      |
+      | fourth | 0      | echo    |
+    When the windows are setup
+    Then the window with the name "first" should have the following
+      | index |
+      | 2     |
+      And the window with the name "second" should have the following
+        | index |
+        | 3     |
+      And the window with the name "fourth" should have the following
+        | index |
+        | 0     |
