@@ -1,9 +1,9 @@
 module Automux
   module Controller
     class Recipes < Base
-      before_filter :load_recipe, :automate
-      before_filter :load_blueprint, :automate
-      before_filter :load_and_setup_session, :automate
+      before_filter :load_recipe, only: :automate
+      before_filter :load_blueprint, only: :automate
+      before_filter :load_and_setup_session, only: :automate
 
       def automate
         render Automux::Library::MiniErb.new(@recipe.read).result(@session.get_binding)

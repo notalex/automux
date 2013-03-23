@@ -23,8 +23,8 @@ module Automux
           end
         end
 
-        def before_filter(filter_name, actions)
-          [actions].flatten.each do |action|
+        def before_filter(filter_name, options)
+          [options[:only]].flatten.each do |action|
             filters_add(filter_name, action)
           end
         end
