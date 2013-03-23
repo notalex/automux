@@ -57,7 +57,7 @@ module Automux
         end
 
         def window_indexes
-          @windows.map(&:assigned_index).compact
+          @windows.map(&:index).compact
         end
 
         def number_of_windows

@@ -7,6 +7,7 @@ module Automux
         def initialize(session, data)
           @session = session
           @options = data
+          @index = options['index']
         end
 
         def name
@@ -29,12 +30,8 @@ module Automux
           options['layout']
         end
 
-        def assigned_index
-          options['index'] || @index
-        end
-
         def update_index
-          @index = options['index'] || next_available_index
+          @index ||= next_available_index
         end
 
         private ###
