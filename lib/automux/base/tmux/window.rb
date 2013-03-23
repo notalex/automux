@@ -31,14 +31,7 @@ module Automux
         end
 
         def update_index
-          @index ||= next_available_index
-        end
-
-        private ###
-
-        def next_available_index
-          n = session.number_of_windows
-          (Array(0..n) - session.window_indexes).first
+          @index ||= session.next_available_window_index
         end
       end
     end

@@ -60,11 +60,16 @@ module Automux
           @windows.map(&:index).compact
         end
 
-        def number_of_windows
-          @windows.length
+        def next_available_window_index
+          n = number_of_windows
+          (Array(0..n) - window_indexes).first
         end
 
         private ###
+
+        def number_of_windows
+          @windows.length
+        end
 
         def add_window(window)
           @windows << window
