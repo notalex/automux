@@ -2,7 +2,7 @@ module Automux
   module Base
     module Tmux
       class Window
-        attr_reader :options, :session
+        attr_reader :options, :session, :index
 
         def initialize(session, data)
           @session = session
@@ -33,17 +33,15 @@ module Automux
           options['index'] || @index
         end
 
-        def index
-          return @index if @index
-
+        def update_index
           @index = options['index'] || next_available_index
         end
 
         private ###
 
         def next_available_index
-          assigned_indexes = session.windows.map(&:assigned_index).compact
-          ((0..session.windows.length).to_a - assigned_indexes).first
+          n = session.number_of_windows
+          (Array(0..n) - session.window_indexes).first
         end
       end
     end

@@ -55,6 +55,15 @@ module Automux
             window = Automux::Base::Tmux::Window.new(self, window_data)
             add_window(window)
           end
+          @windows.each(&:update_index)
+        end
+
+        def window_indexes
+          @windows.map(&:assigned_index).compact
+        end
+
+        def number_of_windows
+          @windows.length
         end
 
         private ###
