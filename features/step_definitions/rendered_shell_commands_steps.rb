@@ -1,9 +1,9 @@
 Given(/^I provide the following blueprint$/) do |string|
-  File.open('features/fixtures/blueprints/sample.yml', 'w') { |f| f.write(string) }
+  File.open('features/fixtures/blueprints/ignored.yml', 'w') { |f| f.write(string) }
 end
 
 When(/^Automux processes this blueprint$/) do
-  params = { blueprint_name: 'sample', recipe_name: 'default' }
+  params = { blueprint_name: 'ignored', recipe_name: 'default' }
   @results = Automux::Controller::Recipes.new(params).automate
 end
 
