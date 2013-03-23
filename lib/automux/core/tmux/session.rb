@@ -1,7 +1,7 @@
 module Automux
   module Core
     module Tmux
-      class Session
+      class Session < Base
         attr_reader :data, :session_name, :commands
 
         def initialize(data)

@@ -2,7 +2,7 @@ require 'yaml'
 
 module Automux
   module Core
-    class Blueprint
+    class Blueprint < Base
       attr_reader :name
 
       def initialize(name)

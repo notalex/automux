@@ -1,6 +1,6 @@
 module Automux
   module Core
-    class Recipe
+    class Recipe < Base
       attr_reader :name
 
       def initialize(name)

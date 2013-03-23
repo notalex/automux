@@ -1,7 +1,7 @@
 module Automux
   module Core
     module Tmux
-      class Window
+      class Window < Base
         attr_reader :options, :session, :index
 
         def initialize(session, data)

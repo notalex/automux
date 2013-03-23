@@ -1,7 +1,7 @@
 module Automux
   module Core
     module Tmux
-      class Pane
+      class Pane < Base
         attr_reader :command, :window
 
         def initialize(window, command)
