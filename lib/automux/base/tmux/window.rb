@@ -2,10 +2,10 @@ module Automux
   module Base
     module Tmux
       class Window
-        attr_reader :options, :tmux
+        attr_reader :options, :session
 
-        def initialize(tmux, data)
-          @tmux = tmux
+        def initialize(session, data)
+          @session = session
           @options = data
         end
 
@@ -42,8 +42,8 @@ module Automux
         private ###
 
         def next_available_index
-          assigned_indexes = tmux.windows.map(&:assigned_index).compact
-          ((0..tmux.windows.length).to_a - assigned_indexes).first
+          assigned_indexes = session.windows.map(&:assigned_index).compact
+          ((0..session.windows.length).to_a - assigned_indexes).first
         end
       end
     end
