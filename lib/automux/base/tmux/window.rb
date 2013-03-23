@@ -8,6 +8,7 @@ module Automux
           @session = session
           @options = data
           @index = options['index']
+          @panes = []
         end
 
         def name
@@ -15,13 +16,18 @@ module Automux
         end
 
         def panes
-          return nil unless options['panes']
+          @panes.dup
+        end
 
-          @panes ||= options['panes'].map { |command| Automux::Base::Tmux::Pane.new(self, command) }
+        def setup_panes
+          options['panes'].each do |command|
+            pane = Automux::Base::Tmux::Pane.new(self, command)
+            @panes << pane
+          end
         end
 
         def has_panes?
-          !panes.nil?
+          !@panes.nil?
         end
 
         def layout
