@@ -7,6 +7,7 @@ module Automux
         def initialize(data)
           @data = data
           @session_name = data['project_name']
+          @windows = []
         end
 
         def start_server
@@ -46,7 +47,20 @@ module Automux
         end
 
         def windows
-          @windows ||= data['windows'].map { |data| Automux::Base::Tmux::Window.new(self, data) }
+          @windows.dup
+        end
+
+        def setup_windows
+          data['windows'].each do |window_data|
+            window = Automux::Base::Tmux::Window.new(self, window_data)
+            add_window(window)
+          end
+        end
+
+        private ###
+
+        def add_window(window)
+          @windows << window
         end
       end
     end

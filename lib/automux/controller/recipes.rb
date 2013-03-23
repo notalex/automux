@@ -3,7 +3,7 @@ module Automux
     class Recipes < Base
       before_filter :load_recipe, :automate
       before_filter :load_blueprint, :automate
-      before_filter :load_session, :automate
+      before_filter :load_and_setup_session, :automate
 
       def automate
         render Automux::Library::MiniErb.new(@recipe.read).result(@session.get_binding)
@@ -19,8 +19,9 @@ module Automux
         @blueprint = Automux::Base::Blueprint::new(params[:blueprint_name])
       end
 
-      def load_session
+      def load_and_setup_session
         @session = Automux::Base::Tmux::Session.new(@blueprint.read)
+        @session.setup_windows
       end
 
       self.superclass.after_inherited(self)
