@@ -3,6 +3,7 @@ module Automux
     module Tmux
       class Window < Base
         attr_reader :options, :session, :index
+        dup_attr_reader :panes
 
         def initialize(session, data)
           @session = session
@@ -13,10 +14,6 @@ module Automux
 
         def name
           options['name']
-        end
-
-        def panes
-          @panes.dup
         end
 
         def setup_panes

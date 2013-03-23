@@ -3,6 +3,7 @@ module Automux
     module Tmux
       class Session < Base
         attr_reader :data, :session_name, :commands
+        dup_attr_reader :windows
 
         def initialize(data)
           @data = data
@@ -44,10 +45,6 @@ module Automux
 
         def get_binding
           binding
-        end
-
-        def windows
-          @windows.dup
         end
 
         def setup_windows
