@@ -1,5 +1,5 @@
 module Automux
-  module Base
+  module Core
     module Tmux
       class Window
         attr_reader :options, :session, :index
@@ -21,7 +21,7 @@ module Automux
 
         def setup_panes
           options['panes'].each do |command|
-            pane = Automux::Base::Tmux::Pane.new(self, command)
+            pane = Automux::Core::Tmux::Pane.new(self, command)
             @panes << pane
           end
         end

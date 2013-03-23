@@ -1,6 +1,6 @@
 require 'automux/paths'
 require 'automux/library'
-require 'automux/base'
+require 'automux/core'
 require 'automux/controller'
 
 module Automux

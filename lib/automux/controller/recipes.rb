@@ -12,15 +12,15 @@ module Automux
       private ###
 
       def load_recipe
-        @recipe = Automux::Base::Recipe.new(params[:recipe_name])
+        @recipe = Automux::Core::Recipe.new(params[:recipe_name])
       end
 
       def load_blueprint
-        @blueprint = Automux::Base::Blueprint::new(params[:blueprint_name])
+        @blueprint = Automux::Core::Blueprint::new(params[:blueprint_name])
       end
 
       def load_and_setup_session
-        @session = Automux::Base::Tmux::Session.new(@blueprint.read)
+        @session = Automux::Core::Tmux::Session.new(@blueprint.read)
         @session.setup_windows
       end
 

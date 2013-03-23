@@ -8,7 +8,7 @@ describe 'Session' do
     end
     data = HashFactory.build(:session, windows: windows_data)
 
-    session = Automux::Base::Tmux::Session.new(data)
+    session = Automux::Core::Tmux::Session.new(data)
     session.setup_windows
 
     session.window_indexes.must_equal [2, 3, 1, 0]

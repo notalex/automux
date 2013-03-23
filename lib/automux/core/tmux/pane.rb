@@ -1,5 +1,5 @@
 module Automux
-  module Base
+  module Core
     module Tmux
       class Pane
         attr_reader :command, :window

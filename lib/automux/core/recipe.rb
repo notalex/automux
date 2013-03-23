@@ -1,8 +1,6 @@
-require 'yaml'
-
 module Automux
-  module Base
-    class Blueprint
+  module Core
+    class Recipe
       attr_reader :name
 
       def initialize(name)
@@ -10,7 +8,8 @@ module Automux
       end
 
       def read
-        YAML.load_file(File.join(Automux::Paths.data, "blueprints/#{ name }.yml"))
+        path = File.join(Automux::Paths.data, "recipes/#{ name }")
+        File.read(path)
       end
     end
   end

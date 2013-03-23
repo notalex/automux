@@ -5,7 +5,7 @@ Given(/^I have provided a blueprint with the following window information$/) do 
 end
 
 When(/^the windows are setup$/) do
-  @session = Automux::Base::Tmux::Session.new(@data)
+  @session = Automux::Core::Tmux::Session.new(@data)
   @session.setup_windows
 end
 

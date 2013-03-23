@@ -1,5 +1,5 @@
 module Automux
-  module Base
+  module Core
     module Tmux
       class Session
         attr_reader :data, :session_name, :commands
@@ -89,7 +89,7 @@ module Automux
 
         def add_windows(windows_data)
           windows_data.each do |window_data|
-            window = Automux::Base::Tmux::Window.new(self, window_data)
+            window = Automux::Core::Tmux::Window.new(self, window_data)
             add_window(window)
           end
         end
