@@ -25,8 +25,6 @@ module Automux
         end
 
         def layout
-          return nil unless options.is_a?(Hash)
-
           options['layout']
         end
 
