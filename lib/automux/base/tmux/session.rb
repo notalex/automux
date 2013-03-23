@@ -51,10 +51,7 @@ module Automux
         end
 
         def setup_windows
-          data['windows'].each do |window_data|
-            window = Automux::Base::Tmux::Window.new(self, window_data)
-            add_window(window)
-          end
+          add_windows(data['windows'])
           @windows.each(&:update_index)
         end
 
@@ -70,6 +67,13 @@ module Automux
 
         def add_window(window)
           @windows << window
+        end
+
+        def add_windows(windows_data)
+          windows_data.each do |window_data|
+            window = Automux::Base::Tmux::Window.new(self, window_data)
+            add_window(window)
+          end
         end
       end
     end
