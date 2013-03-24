@@ -3,11 +3,7 @@ module Automux
     extend self
 
     def data
-      if ENV['AUTOMUX_ENV'] == 'test'
-        File.join(root, 'features/fixtures/')
-      else
-        File.join(root, 'data/automux')
-      end
+      File.join(root, 'data/automux')
     end
 
     def root

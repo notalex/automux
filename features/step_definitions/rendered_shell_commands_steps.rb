@@ -1,5 +1,5 @@
 Given(/^I provide the following blueprint$/) do |string|
-  File.open('features/fixtures/blueprints/ignored.yml', 'w') { |f| f.write(string) }
+  File.open('data/automux/blueprints/ignored.yml', 'w') { |f| f.write(string) }
 end
 
 When(/^Automux processes this blueprint$/) do
