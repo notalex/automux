@@ -2,12 +2,13 @@ module Automux
   module Core
     module Tmux
       class Session < Base
-        attr_reader :data, :session_name, :commands
+        attr_reader :data, :session_name, :commands, :root
         dup_attr_reader :windows
 
         def initialize(data)
           @data = data
           @session_name = data['project_name']
+          @root = data['root']
           @windows = []
         end
 

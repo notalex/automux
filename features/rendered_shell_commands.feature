@@ -7,7 +7,7 @@ In order to run the shell commands matching the given blueprint
     Given I provide the following blueprint
       """
       project_name: test
-      project_root: ~/
+      root: ~/projects
       windows:
         - name: editor
           layout: main-vertical
@@ -30,6 +30,8 @@ In order to run the shell commands matching the given blueprint
     When Automux processes this blueprint
     Then the rendered sequence of shell commands should be
       """
+      cd ~/projects
+
       tmux start-server
       tmux -u2 new-session -d -s test
 
@@ -62,7 +64,7 @@ In order to run the shell commands matching the given blueprint
     Given I provide the following blueprint
       """
       project_name: test
-      project_root: ~/
+      root: '~'
       windows:
         - name: editor
           panes:
@@ -76,6 +78,8 @@ In order to run the shell commands matching the given blueprint
     When Automux processes this blueprint
     Then the rendered sequence of shell commands should be
       """
+      cd ~
+
       tmux start-server
       tmux -u2 new-session -d -s test
 

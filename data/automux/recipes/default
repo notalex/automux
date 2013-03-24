@@ -1,3 +1,5 @@
+cd <%= root %>
+
 = start_server
 = new_session
 
