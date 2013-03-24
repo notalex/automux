@@ -2,23 +2,23 @@ module Automux
   module Core
     module Tmux
       class Window < Base
-        attr_reader :options, :session, :index
+        attr_reader :data, :session, :index
         dup_attr_reader :panes
-        private :options, :session
+        private :data, :session
 
         def initialize(session, data)
           @session = session
-          @options = data
-          @index = options['index']
+          @data = data
+          @index = data['index']
           @panes = []
         end
 
         def name
-          options['name']
+          data['name']
         end
 
         def setup_panes
-          options['panes'].each do |command|
+          data['panes'].each do |command|
             pane = Automux::Core::Tmux::Pane.new(self, command)
             @panes << pane
           end
@@ -29,7 +29,7 @@ module Automux
         end
 
         def layout
-          options['layout']
+          data['layout']
         end
 
         def update_index
