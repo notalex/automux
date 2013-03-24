@@ -2,13 +2,14 @@ module Automux
   module Core
     module Tmux
       class Session < Base
-        attr_reader :data, :name, :commands, :root
+        attr_reader :data, :name, :commands, :root, :data_windows
         dup_attr_reader :windows
 
-        def initialize(data)
-          @data = data
+        def initialize(blueprint_data)
+          @data = blueprint_data
           @name = data['name']
-          @root = data['root']
+          @root = data['root'] || '.'
+          @data_windows = data['windows'] || []
           @windows = []
         end
 
@@ -49,7 +50,7 @@ module Automux
         end
 
         def setup_windows
-          windows_data = remove_duplicate_indexes(data['windows'])
+          windows_data = remove_duplicate_indexes(data_windows)
           add_windows(windows_data)
           @windows.each(&:update_index)
           @windows.each(&:setup_panes)

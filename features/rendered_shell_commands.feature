@@ -93,3 +93,19 @@ In order to run the shell commands matching the given blueprint
 
       tmux -u2 attach-session -t test
       """
+
+  Scenario: Only name is provided
+    Given I provide the following blueprint
+      """
+      name: test
+      """
+    When Automux processes this blueprint
+    Then the rendered sequence of shell commands should be
+      """
+      cd .
+
+      tmux start-server
+      tmux -u2 new-session -d -s test
+
+      tmux -u2 attach-session -t test
+      """
