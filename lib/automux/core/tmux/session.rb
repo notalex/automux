@@ -4,6 +4,7 @@ module Automux
       class Session < Base
         attr_reader :data, :name, :root, :data_windows
         dup_attr_reader :windows
+        private :data, :data_windows
 
         def initialize(blueprint_data)
           @data = blueprint_data

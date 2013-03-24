@@ -3,6 +3,7 @@ module Automux
     module Tmux
       class Pane < Base
         attr_reader :command, :window
+        private :window
 
         def initialize(window, command)
           @window = window

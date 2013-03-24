@@ -4,6 +4,7 @@ module Automux
       class Window < Base
         attr_reader :options, :session, :index
         dup_attr_reader :panes
+        private :options, :session
 
         def initialize(session, data)
           @session = session

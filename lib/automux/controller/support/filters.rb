@@ -3,6 +3,7 @@ module Automux
     module Support
       module Filters
         attr_reader :filters
+        private :filters
 
         def inherited(base)
           base.instance_variable_set '@filters', {}
