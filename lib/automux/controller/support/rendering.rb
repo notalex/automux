@@ -5,7 +5,7 @@ module Automux
         def render(result)
           modified_result = remove_empty_lines(result)
           if ENV['AUTOMUX_ENV'] == 'test'
-            modified_result
+            puts(modified_result)
           else
             exec(modified_result)
           end
