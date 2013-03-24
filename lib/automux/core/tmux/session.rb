@@ -2,7 +2,7 @@ module Automux
   module Core
     module Tmux
       class Session < Base
-        attr_reader :data, :name, :commands, :root, :data_windows
+        attr_reader :data, :name, :root, :data_windows
         dup_attr_reader :windows
 
         def initialize(blueprint_data)
