@@ -32,6 +32,7 @@ In order to run the shell commands matching the given blueprint
       """
       tmux start-server
       tmux -u2 new-session -d -s test
+
       tmux new-window -t test:2 2> /dev/null
       tmux rename-window -t test:2 editor
 
@@ -41,19 +42,17 @@ In order to run the shell commands matching the given blueprint
       tmux split-window
       tmux send-keys -t test:2 "pwd" C-m
       tmux select-layout -t test:2 main-vertical
+
       tmux new-window -t test:3 2> /dev/null
       tmux rename-window -t test:3 htop
-
       tmux send-keys -t test:3 "htop" C-m
 
       tmux new-window -t test:1 2> /dev/null
       tmux rename-window -t test:1 tester
-
       tmux send-keys -t test:1 "pwd" C-m
 
       tmux new-window -t test:0 2> /dev/null
       tmux rename-window -t test:0 zero
-
       tmux send-keys -t test:0 "pwd" C-m
 
       tmux -u2 attach-session -t test
@@ -79,14 +78,13 @@ In order to run the shell commands matching the given blueprint
       """
       tmux start-server
       tmux -u2 new-session -d -s test
+
       tmux new-window -t test:1 2> /dev/null
       tmux rename-window -t test:1 editor
-
       tmux send-keys -t test:1 "vim" C-m
 
       tmux new-window -t test:0 2> /dev/null
       tmux rename-window -t test:0 top
-
       tmux send-keys -t test:0 "top" C-m
 
       tmux -u2 attach-session -t test

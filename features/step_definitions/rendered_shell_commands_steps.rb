@@ -10,7 +10,7 @@ end
 Then(/^the rendered sequence of shell commands should be$/) do |string|
 
   results_array = @results.split("\n")
-  output_array = string.split("\n")
+  output_array = string.split("\n").reject { |text| text.split.empty? }
 
   results_array.length.times do |i|
     assert_equal(results_array[i].strip, output_array[i].strip)
