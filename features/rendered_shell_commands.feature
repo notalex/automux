@@ -6,7 +6,7 @@ In order to run the shell commands matching the given blueprint
   Scenario: A 4 window blueprint with some fixed indexes and subpanes
     Given I provide the following blueprint
       """
-      project_name: test
+      name: test
       root: ~/projects
       windows:
         - name: editor
@@ -63,7 +63,7 @@ In order to run the shell commands matching the given blueprint
   Scenario: Windows with clashing index values
     Given I provide the following blueprint
       """
-      project_name: test
+      name: test
       root: '~'
       windows:
         - name: editor

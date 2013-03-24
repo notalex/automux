@@ -1,4 +1,4 @@
-project_name: test
+name: test
 root: ~/
 windows:
   - name: editor
