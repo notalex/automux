@@ -9,6 +9,7 @@ module Automux
         def initialize(session, data)
           @session = session
           @data = data
+          @opt = data['opt']
           @index = data['index']
           @panes = []
         end
@@ -34,6 +35,12 @@ module Automux
 
         def update_index
           @index ||= session.next_available_window_index
+        end
+
+        def opted_in?
+          return true if @opt.nil?
+
+          @opt
         end
       end
     end

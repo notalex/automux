@@ -90,7 +90,7 @@ module Automux
         def add_windows(windows_data)
           windows_data.each do |window_data|
             window = Automux::Core::Tmux::Window.new(self, window_data)
-            add_window(window)
+            add_window(window) if window.opted_in?
           end
         end
       end

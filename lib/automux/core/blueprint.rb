@@ -1,5 +1,3 @@
-require 'yaml'
-
 module Automux
   module Core
     class Blueprint < Base
@@ -10,7 +8,7 @@ module Automux
       end
 
       def read
-        YAML.load_file(File.join(Automux::Paths.data, "blueprints/#{ name }.yml"))
+        Automux::Library::YamlParser.load_file(File.join(Automux::Paths.data, "blueprints/#{ name }.yml"))
       end
     end
   end

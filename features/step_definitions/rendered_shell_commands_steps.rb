@@ -7,6 +7,12 @@ When(/^Automux processes this blueprint$/) do
   @results = File.read('/tmp/results')
 end
 
+When(/^Automux processes this blueprint with the following options$/) do |table|
+  opts = table.hashes.map { |h| h.values }.flatten.join(' ')
+  system %[bin/automux ignored #{ opts }]
+  @results = File.read('/tmp/results')
+end
+
 Then(/^the rendered sequence of shell commands should be$/) do |string|
 
   results_array = @results.split("\n")
