@@ -5,7 +5,7 @@ module Automux
         def render(result)
           modified_result = remove_empty_lines(result)
           if ENV['AUTOMUX_ENV'] == 'test'
-            puts(modified_result)
+            File.open('/tmp/results', 'w') { |f| f.write(modified_result) }
           else
             exec(modified_result)
           end

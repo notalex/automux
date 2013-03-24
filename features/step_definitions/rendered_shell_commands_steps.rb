@@ -3,7 +3,8 @@ Given(/^I provide the following blueprint$/) do |string|
 end
 
 When(/^Automux processes this blueprint$/) do
-  @results = %x[bin/automux ignored]
+  system %[bin/automux ignored]
+  @results = File.read('/tmp/results')
 end
 
 Then(/^the rendered sequence of shell commands should be$/) do |string|
