@@ -115,7 +115,7 @@ module Automux
           windows_data = remove_duplicate_indexes(data_windows)
           add_windows(windows_data)
           @windows.each(&:update_index)
-          @windows.each(&:setup_panes)
+          @windows.each(&:setup_panes_and_hooks)
         end
 
         def get_window(identifier)

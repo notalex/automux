@@ -13,10 +13,20 @@ cd <%= root %>
 
   - if window.has_panes?
     = send_keys(window, window.change_root_command) if window.root
+
+    - window.pre_hooks.each do |hook|
+      = send_keys(window, hook.command)
+    - end
+
     - window.panes.each do |pane|
       = create_pane if pane.index > 0
       = send_keys(window, pane.command)
     - end
+
+    - window.post_hooks.each do |hook|
+      = send_keys(window, hook.command)
+    - end
+
     = select_layout(window) if window.layout
   - end
 - end
