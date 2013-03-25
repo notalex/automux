@@ -16,16 +16,14 @@ In order to run the shell commands matching the given blueprint
             - top
             - pwd
         - name: htop
-          panes:
-            - htop
+          panes: htop
         - name: tester
           index: 1
           panes:
             - pwd
         - name: zero
           index: 0
-          panes:
-            - pwd
+          panes: [pwd, echo hello]
       """
     When Automux processes this blueprint
     Then the rendered sequence of shell commands should be
@@ -56,6 +54,8 @@ In order to run the shell commands matching the given blueprint
       tmux new-window -t test:0 2> /dev/null
       tmux rename-window -t test:0 zero
       tmux send-keys -t test:0 "pwd" C-m
+      tmux split-window
+      tmux send-keys -t test:0 "echo hello" C-m
 
       tmux -u2 attach-session -t test
       """
@@ -67,12 +67,10 @@ In order to run the shell commands matching the given blueprint
       root: '~'
       windows:
         - name: editor
-          panes:
-            - vim
+          panes: vim
           index: 1
         - name: top
-          panes:
-            - top
+          panes: top
           index: 1
       """
     When Automux processes this blueprint
@@ -115,8 +113,7 @@ In order to run the shell commands matching the given blueprint
       """
       name: window-less
       windows:
-        - panes:
-            - vim
+        - panes: vim
       """
     When Automux processes this blueprint
     Then the rendered sequence of shell commands should be
@@ -161,8 +158,7 @@ In order to run the shell commands matching the given blueprint
       windows:
         - name: top
           opt: '-t'
-          panes:
-            - top
+          panes: top
       """
     When Automux processes this blueprint with the following options
       | option | value |
@@ -183,8 +179,7 @@ In order to run the shell commands matching the given blueprint
       name: test
       windows:
         - name: git
-          panes:
-            - git pull '-r:' master
+          panes: git pull '-r:' master
       """
     When Automux processes this blueprint with the following options
       | option | value  |
@@ -211,12 +206,10 @@ In order to run the shell commands matching the given blueprint
       windows:
         - name: vim
           opt: '-v'
-          panes:
-            - vim
+          panes: vim
         - name: top
           opt: '-t'
-          panes:
-            - top
+          panes: top
       """
     When Automux processes this blueprint with the following options
       | option | value    |
