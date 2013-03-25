@@ -5,7 +5,7 @@ cd <%= root %>
 
 - windows.each do |window|
   = new_window(window)
-  = rename_window(window)
+  = rename_window(window) if window.name
 
   - if window.has_panes?
     - window.panes.each do |pane|

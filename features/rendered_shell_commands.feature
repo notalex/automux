@@ -110,6 +110,28 @@ In order to run the shell commands matching the given blueprint
       tmux -u2 attach-session -t test
       """
 
+  Scenario: Providing no name for a window
+    Given I provide the following blueprint
+      """
+      name: window-less
+      windows:
+        - panes:
+            - vim
+      """
+    When Automux processes this blueprint
+    Then the rendered sequence of shell commands should be
+      """
+      cd .
+
+      tmux start-server
+      tmux -u2 new-session -d -s window-less
+
+      tmux new-window -t window-less:0 2> /dev/null
+      tmux send-keys -t window-less:0 "vim" C-m
+
+      tmux -u2 attach-session -t window-less
+      """
+
   Scenario: Providing commands and disabling windows at runtime
     Given I provide the following blueprint
       """
