@@ -105,7 +105,7 @@ module Automux
         def setup_hooks
           data_hooks.each do |type, commands|
             [commands].flatten.each do |command|
-              @hooks << Hook.new(type, command)
+              @hooks << Hook.new(self, type, command)
             end
           end
         end
