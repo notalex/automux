@@ -2,7 +2,7 @@ module Automux
   module Core
     module Tmux
       class Window < Base
-        attr_reader :data, :session, :index
+        attr_reader :data, :session, :index, :root
         dup_attr_reader :panes
         private :data, :session
 
@@ -11,6 +11,7 @@ module Automux
           @data = data
           @opt = data['opt']
           @index = data['index']
+          @root = data['root']
           @panes = []
         end
 
@@ -41,6 +42,10 @@ module Automux
           return true if @opt.nil?
 
           @opt
+        end
+
+        def change_root_command
+          %[cd #{ root }]
         end
       end
     end

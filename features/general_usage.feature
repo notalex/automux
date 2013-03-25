@@ -128,3 +128,31 @@ In order to run the shell commands matching the given blueprint
 
       tmux -u2 attach-session -t name-less
       """
+
+  Scenario: Windows with seperate roots
+    Given I provide the following blueprint
+      """
+      name: test
+      root: '~'
+      windows:
+        - panes: vim
+          root: 'projects'
+        - panes: top
+      """
+    When Automux processes this blueprint
+    Then the rendered sequence of shell commands should be
+      """
+      cd ~
+
+      tmux start-server
+      tmux -u2 new-session -d -s test
+
+      tmux new-window -t test:0 2> /dev/null
+      tmux send-keys -t test:0 "cd projects" C-m
+      tmux send-keys -t test:0 "vim" C-m
+
+      tmux new-window -t test:1 2> /dev/null
+      tmux send-keys -t test:1 "top" C-m
+
+      tmux -u2 attach-session -t test
+      """
