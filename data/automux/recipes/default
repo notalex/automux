@@ -1,11 +1,11 @@
 cd <%= root %>
 
-= start_server
-= new_session
-
 - pre_hooks.each do |hook|
   = hook.command
 - end
+
+= start_server
+= new_session
 
 - windows.each do |window|
   = new_window(window)

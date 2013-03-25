@@ -15,11 +15,11 @@ Feature: Using pre and post hooks for session
       """
       cd .
 
-      tmux start-server
-      tmux -u2 new-session -d -s hooked
-
       echo Hello
       rvm use automux
+
+      tmux start-server
+      tmux -u2 new-session -d -s hooked
 
       tmux -u2 attach-session -t hooked
 
