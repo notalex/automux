@@ -3,6 +3,10 @@ cd <%= root %>
 = start_server
 = new_session
 
+- pre_hooks.each do |hook|
+  = hook.command
+- end
+
 - windows.each do |window|
   = new_window(window)
   = rename_window(window) if window.name
@@ -17,3 +21,7 @@ cd <%= root %>
 - end
 
 = attach_session
+
+- post_hooks.each do |hook|
+  = hook.command
+- end

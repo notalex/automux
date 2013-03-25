@@ -3,7 +3,7 @@ module Automux
     module Tmux
       class Session < Base
         attr_reader :data, :name, :root, :data_windows
-        dup_attr_reader :windows
+        dup_attr_reader :windows, :hooks
         private :data, :data_windows
 
         def initialize(blueprint_data)
@@ -12,6 +12,7 @@ module Automux
           @root = data['root'] || '.'
           @data_windows = data['windows'] || []
           @windows = []
+          @hooks = []
         end
 
         def start_server
@@ -48,6 +49,19 @@ module Automux
 
         def get_binding
           binding
+        end
+
+        def setup_hooks_and_windows
+          setup_hooks
+          setup_windows
+        end
+
+        def pre_hooks
+          hooks.select(&:pre?)
+        end
+
+        def post_hooks
+          hooks.select(&:post?)
         end
 
         def setup_windows
@@ -91,6 +105,14 @@ module Automux
           windows_data.each do |window_data|
             window = Automux::Core::Tmux::Window.new(self, window_data)
             add_window(window) if window.opted_in?
+          end
+        end
+
+        def setup_hooks
+          data['hooks'].each do |type, commands|
+            [commands].flatten.each do |command|
+              @hooks << Hook.new(type, command)
+            end
           end
         end
       end
