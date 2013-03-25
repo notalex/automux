@@ -14,7 +14,7 @@ module Automux
         private ###
 
         def replace_opts_with_user_input(string)
-          blueprint_opts = string.scan(/['|"]-(\w+:?)['|"]/m).flatten
+          blueprint_opts = string.scan(/['|"]-(\w:?)['|"]/m).flatten
           user_input_values = get_options(blueprint_opts)
           replace_opts(string, user_input_values)
         end
