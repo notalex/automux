@@ -6,7 +6,7 @@ end
 
 When(/^the windows are setup$/) do
   @session = Automux::Core::Tmux::Session.new(@data)
-  @session.setup_windows
+  @session.setup_hooks_and_windows
 end
 
 Then(/^the window with the name "(.+)" should have the following$/) do |name, table|
@@ -16,4 +16,3 @@ Then(/^the window with the name "(.+)" should have the following$/) do |name, ta
     window.send(field).must_equal value
   end
 end
-
