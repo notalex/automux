@@ -2,15 +2,16 @@ module Automux
   module Core
     module Tmux
       class Session < Base
-        attr_reader :data, :name, :root, :data_windows
+        attr_reader :data, :name, :root, :data_windows, :data_hooks
         dup_attr_reader :windows, :hooks
-        private :data, :data_windows
+        private :data, :data_windows, :data_hooks
 
         def initialize(blueprint_data)
           @data = blueprint_data
           @name = data['name']
           @root = data['root'] || '.'
           @data_windows = data['windows'] || []
+          @data_hooks = data['hooks'] || []
           @windows = []
           @hooks = []
         end
@@ -109,7 +110,7 @@ module Automux
         end
 
         def setup_hooks
-          data['hooks'].each do |type, commands|
+          data_hooks.each do |type, commands|
             [commands].flatten.each do |command|
               @hooks << Hook.new(type, command)
             end
