@@ -21,7 +21,7 @@ module Automux
 
       def load_and_setup_session
         @session = Automux::Core::Tmux::Session.new(@blueprint.read)
-        @session.setup_hooks_and_windows
+        @session.setup_windows_and_hooks
       end
 
       self.superclass.after_inherited(self)

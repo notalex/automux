@@ -52,9 +52,9 @@ module Automux
           binding
         end
 
-        def setup_hooks_and_windows
-          setup_hooks
+        def setup_windows_and_hooks
           setup_windows
+          setup_hooks
         end
 
         def pre_hooks
