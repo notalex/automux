@@ -158,7 +158,7 @@ In order to run the shell commands matching the given blueprint
       name: test
       windows:
         - name: git
-          panes: git pull '-r:' master
+          panes: git pull "-r:" master
       """
     When Automux processes this blueprint with the following options
       | option | value  |
