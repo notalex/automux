@@ -132,6 +132,27 @@ In order to run the shell commands matching the given blueprint
       tmux -u2 attach-session -t window-less
       """
 
+  Scenario: Creating window with only a single command
+    Given I provide the following blueprint
+      """
+      name: test
+      windows:
+        - panes: git pull origin master
+      """
+    When Automux processes this blueprint
+    Then the rendered sequence of shell commands should be
+      """
+      cd .
+
+      tmux start-server
+      tmux -u2 new-session -d -s test
+
+      tmux new-window -t test:0 2> /dev/null
+      tmux send-keys -t test:0 "git pull origin master" C-m
+
+      tmux -u2 attach-session -t test
+      """
+
   Scenario: Providing commands and disabling windows at runtime
     Given I provide the following blueprint
       """

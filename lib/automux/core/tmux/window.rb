@@ -19,7 +19,7 @@ module Automux
         end
 
         def setup_panes
-          data['panes'].each do |command|
+          [data['panes']].flatten.each do |command|
             pane = Automux::Core::Tmux::Pane.new(self, command)
             @panes << pane
           end
