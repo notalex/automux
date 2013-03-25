@@ -12,10 +12,10 @@ cd <%= root %>
   = rename_window(window) if window.name
 
   - if window.has_panes?
-    = send_keys(window.index, window.change_root_command) if window.root
+    = send_keys(window, window.change_root_command) if window.root
     - window.panes.each do |pane|
       = create_pane if pane.index > 0
-      = send_keys(window.index, pane.command)
+      = send_keys(window, pane.command)
     - end
     = select_layout(window) if window.layout
   - end

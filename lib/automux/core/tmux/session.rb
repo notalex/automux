@@ -28,12 +28,13 @@ module Automux
           %[tmux new-window -t #{ name }:#{ window.index } 2> /dev/null]
         end
 
-        def rename_window(window)
-          %[tmux rename-window -t #{ name }:#{ window.index } #{ window.name }]
+        def rename_window(window, window_name = window.name)
+          %[tmux rename-window -t #{ name }:#{ window.index } #{ window_name }]
         end
 
-        def send_keys(number, command)
-          %[tmux send-keys -t #{ name }:#{ number } "#{ command }" C-m]
+        def send_keys(identifier, command)
+          window = get_window(identifier)
+          %[tmux send-keys -t #{ name }:#{ window.index } "#{ command }" C-m]
         end
 
         def attach_session
@@ -115,6 +116,12 @@ module Automux
           add_windows(windows_data)
           @windows.each(&:update_index)
           @windows.each(&:setup_panes)
+        end
+
+        def get_window(identifier)
+          return identifier if identifier.is_a?(Window)
+
+          @windows.find { |window| [window.index, window.name].include?(identifier) }
         end
       end
     end
