@@ -92,28 +92,10 @@ In order to run the shell commands matching the given blueprint
       tmux -u2 attach-session -t test
       """
 
-  Scenario: Only name is provided
-    Given I provide the following blueprint
-      """
-      name: test
-      """
-    When Automux processes this blueprint
-    Then the rendered sequence of shell commands should be
-      """
-      cd .
-
-      tmux start-server
-      tmux -u2 new-session -d -s test
-
-      tmux -u2 attach-session -t test
-      """
-
-  Scenario: Providing no name for a window
+  Scenario: Only session name is provided
     Given I provide the following blueprint
       """
       name: window-less
-      windows:
-        - panes: git pull origin master
       """
     When Automux processes this blueprint
     Then the rendered sequence of shell commands should be
@@ -123,10 +105,28 @@ In order to run the shell commands matching the given blueprint
       tmux start-server
       tmux -u2 new-session -d -s window-less
 
-      tmux new-window -t window-less:0 2> /dev/null
-      tmux send-keys -t window-less:0 "git pull origin master" C-m
-
       tmux -u2 attach-session -t window-less
+      """
+
+  Scenario: Providing no name for a window
+    Given I provide the following blueprint
+      """
+      name: name-less
+      windows:
+        - panes: git pull origin master
+      """
+    When Automux processes this blueprint
+    Then the rendered sequence of shell commands should be
+      """
+      cd .
+
+      tmux start-server
+      tmux -u2 new-session -d -s name-less
+
+      tmux new-window -t name-less:0 2> /dev/null
+      tmux send-keys -t name-less:0 "git pull origin master" C-m
+
+      tmux -u2 attach-session -t name-less
       """
 
   Scenario: Providing commands and disabling windows at runtime
