@@ -65,13 +65,6 @@ module Automux
           hooks.select(&:post?)
         end
 
-        def setup_windows
-          windows_data = remove_duplicate_indexes(data_windows)
-          add_windows(windows_data)
-          @windows.each(&:update_index)
-          @windows.each(&:setup_panes)
-        end
-
         def window_indexes
           @windows.map(&:index).compact
         end
@@ -115,6 +108,13 @@ module Automux
               @hooks << Hook.new(type, command)
             end
           end
+        end
+
+        def setup_windows
+          windows_data = remove_duplicate_indexes(data_windows)
+          add_windows(windows_data)
+          @windows.each(&:update_index)
+          @windows.each(&:setup_panes)
         end
       end
     end
