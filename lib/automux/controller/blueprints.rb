@@ -10,6 +10,7 @@ module Automux
 
       def create
         blueprint = Automux::Core::Blueprint.build_by_name(params[:name])
+        blueprint.source = Automux::Cache::Blueprint.find_by_name('default')
         @binding = blueprint.get_binding
         render 'create'
       end
