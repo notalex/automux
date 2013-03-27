@@ -1,4 +1,5 @@
 require 'automux/cache/blueprint'
+require 'automux/cache/recipe'
 
 module Automux::Cache
   class << self

@@ -6,13 +6,13 @@ module Automux
       before_filter :load_and_setup_session, only: :automate
 
       def automate
-        render Automux::Library::MiniErb.new(@recipe.read).result(@session.get_binding)
+        render Automux::Library::MiniErb.new(File.read(@recipe.path)).result(@session.get_binding)
       end
 
       private ###
 
       def load_recipe
-        @recipe = Automux::Core::Recipe.new(params[:recipe_name])
+        @recipe = Automux::Cache::Recipe.find_by_name(params[:recipe_name])
       end
 
       def load_blueprint

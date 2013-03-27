@@ -1,15 +1,11 @@
 module Automux
   module Core
     class Recipe < Base
-      attr_reader :name
+      attr_reader :name, :path
 
-      def initialize(name)
-        @name = name
-      end
-
-      def read
-        path = File.join(Automux::Paths.data, "recipes/#{ name }")
-        File.read(path)
+      def initialize(path)
+        @name = File.basename(path)
+        @path = path
       end
     end
   end

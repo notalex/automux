@@ -14,6 +14,10 @@ module Automux
       paths_for String(__method__)
     end
 
+    def recipes
+      paths_for String(__method__)
+    end
+
     private ###
 
     def user_data(type)
