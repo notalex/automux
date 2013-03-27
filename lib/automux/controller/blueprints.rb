@@ -8,6 +8,12 @@ module Automux
         render 'edit'
       end
 
+      def create
+        blueprint = Automux::Core::Blueprint.build_by_name(params[:name])
+        @binding = blueprint.get_binding
+        render 'create'
+      end
+
       private ###
 
       def load_blueprint

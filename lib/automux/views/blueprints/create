@@ -1,0 +1,2 @@
+cp <%= Automux::Paths.blueprints_container %>/default.yml <%= path %>
+$EDITOR <%= path %>

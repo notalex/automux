@@ -15,6 +15,13 @@ module Automux
       def get_binding
         binding
       end
+
+      class << self
+        def build_by_name(name)
+          path = File.join(Automux::Paths.blueprints_container, "#{ name }.yml")
+          new(path)
+        end
+      end
     end
   end
 end
