@@ -18,6 +18,10 @@ module Automux
       paths_for String(__method__)
     end
 
+    def views
+      'lib/automux/views'
+    end
+
     def user_assets
       File.join(ENV['HOME'], '.automux')
     end

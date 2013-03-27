@@ -8,6 +8,9 @@ require 'automux'
 case ARGV[0]
 when 'setup'
   Automux::Setup.user_assets_folders
+when 'blueprint'
+  params = { name: ARGV[2] }
+  Automux::Controller::Blueprints.new(params).send(ARGV[1])
 else
   params = { blueprint_name: ARGV[0], recipe_name: 'default' }
   Automux::Controller::Recipes.new(params).automate

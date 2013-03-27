@@ -16,10 +16,10 @@ end
 Then(/^the rendered sequence of shell commands should be$/) do |string|
 
   results_array = @results.split("\n")
-  expected_array = string.split("\n").reject { |text| text.split.empty? }
+  expected_string = string.gsub(/\$HOME/, ENV['HOME'])
+  expected_array = expected_string.split("\n").reject { |text| text.split.empty? }
 
   expected_array.length.times do |i|
     assert_equal(expected_array[i].strip, results_array[i].strip)
   end
 end
-

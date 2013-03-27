@@ -11,6 +11,10 @@ module Automux
       def read
         Automux::Library::YamlParser.load_file(File.join(Automux::Paths.data, "blueprints/#{ name }.yml"))
       end
+
+      def get_binding
+        binding
+      end
     end
   end
 end
