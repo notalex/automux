@@ -1,9 +1,5 @@
-Given /^the user assets folders are setup$/ do
-  system %[bin/automux setup]
-end
-
 Given(/^the user assets has the following blueprint saved as "(.+)"$/) do |name, string|
-  path = File.join(Automux::Paths.user_assets, 'blueprints', "#{ name }.yml")
+  path = File.join(Automux::Paths.blueprints_container, "#{ name }.yml")
   File.open(path, 'w') { |f| f.write(string) }
 end
 

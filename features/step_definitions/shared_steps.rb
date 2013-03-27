@@ -1,15 +1,19 @@
+Given /^the user assets folders are setup$/ do
+  system %[bin/automux setup]
+end
+
 Given(/^I provide the following blueprint$/) do |string|
-  File.open('data/automux/blueprints/ignored.yml', 'w') { |f| f.write(string) }
+  File.open("#{ ENV['HOME'] }/.automux/blueprints/test_sample.yml", 'w') { |f| f.write(string) }
 end
 
 When(/^Automux processes this blueprint$/) do
-  system %[bin/automux ignored]
+  system %[bin/automux test_sample]
   @results = File.read('/tmp/results')
 end
 
 When(/^Automux processes this blueprint with the following options$/) do |table|
   opts = table.hashes.map { |h| h.values }.flatten.join(' ')
-  system %[bin/automux ignored #{ opts }]
+  system %[bin/automux test_sample #{ opts }]
   @results = File.read('/tmp/results')
 end
 

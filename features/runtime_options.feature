@@ -1,5 +1,8 @@
 Feature: Providing runtime options for blueprints
 
+  Background:
+    Given the user assets folders are setup
+
   Scenario: Providing commands and disabling windows at runtime
     Given I provide the following blueprint
       """

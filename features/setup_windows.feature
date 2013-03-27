@@ -1,5 +1,8 @@
 Feature: Creating Window objects from user provided data
 
+  Background:
+    Given the user assets folders are setup
+
     Scenario: Window with conflicting indexes
     Given I have provided a blueprint with the following window information
       | name   | index  | panes   |
