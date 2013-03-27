@@ -1,10 +1,11 @@
 module Automux
   module Core
     class Blueprint < Base
-      attr_reader :name
+      attr_reader :name, :path
 
-      def initialize(name)
-        @name = name
+      def initialize(path)
+        @name = File.basename(path, '.yml')
+        @path = path
       end
 
       def read

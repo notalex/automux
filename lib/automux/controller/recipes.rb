@@ -16,7 +16,7 @@ module Automux
       end
 
       def load_blueprint
-        @blueprint = Automux::Core::Blueprint::new(params[:blueprint_name])
+        @blueprint = Automux::Cache::Blueprint.find_by_name(params[:blueprint_name])
       end
 
       def load_and_setup_session
