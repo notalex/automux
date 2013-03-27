@@ -1,7 +1,6 @@
 require 'automux/controller/support'
 require 'automux/controller/base'
 require 'automux/controller/recipes'
-require 'automux/controller/blueprints'
 
 module Automux::Controller
   class << self
