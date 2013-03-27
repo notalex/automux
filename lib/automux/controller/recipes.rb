@@ -6,7 +6,8 @@ module Automux
       before_filter :load_and_setup_session, only: :automate
 
       def automate
-        render Automux::Library::MiniErb.new(File.read(@recipe.path)).result(@session.get_binding)
+        @binding = @session.get_binding
+        render @recipe.path
       end
 
       private ###
