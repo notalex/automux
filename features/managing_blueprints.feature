@@ -31,3 +31,11 @@ Feature: Creating, Cloning, Editing and Deleting Blueprints
       cp $HOME/.automux/blueprints/default.yml $HOME/.automux/blueprints/test_sample.yml
       echo default.yml copied
       """
+
+  Scenario: Using an alias to copy blueprint
+    When I call Automux to "cp" the blueprint "default" as "test_sample"
+    Then the rendered sequence of shell commands should be
+      """
+      cp $HOME/.automux/blueprints/default.yml $HOME/.automux/blueprints/test_sample.yml
+      echo default.yml copied
+      """

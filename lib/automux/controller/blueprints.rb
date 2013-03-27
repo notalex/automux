@@ -1,7 +1,7 @@
 module Automux
   module Controller
     class Blueprints < Base
-      before_filter :load_blueprint, only: [:edit, :copy]
+      before_filter :load_blueprint, only: [:edit, :copy, :cp]
 
       def edit
         @binding = @blueprint.get_binding
@@ -21,6 +21,7 @@ module Automux
         @binding = clone_blueprint.get_binding
         render 'copy'
       end
+      alias_method :cp, :copy
 
       private ###
 
