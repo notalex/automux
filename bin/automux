@@ -5,6 +5,10 @@ $LOAD_PATH.unshift(lib_path) unless $LOAD_PATH.include?(lib_path)
 
 require 'automux'
 
-params = { blueprint_name: ARGV[0], recipe_name: 'default' }
-
-Automux::Controller::Recipes.new(params).automate
+case ARGV[0]
+when 'setup'
+  Automux::Setup.user_assets_folders
+else
+  params = { blueprint_name: ARGV[0], recipe_name: 'default' }
+  Automux::Controller::Recipes.new(params).automate
+end

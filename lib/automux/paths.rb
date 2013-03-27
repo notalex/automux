@@ -18,10 +18,14 @@ module Automux
       paths_for String(__method__)
     end
 
+    def user_assets
+      File.join(ENV['HOME'], '.automux')
+    end
+
     private ###
 
     def user_data(type)
-      File.join(ENV['HOME'], '.automux', type, '*')
+      File.join(user_assets, type, '*')
     end
 
     def paths_for(type)
