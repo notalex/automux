@@ -39,3 +39,31 @@ Feature: Creating, Cloning, Editing and Deleting Blueprints
       cp $HOME/.automux/blueprints/default.yml $HOME/.automux/blueprints/test_sample.yml
       echo default.yml copied
       """
+
+  Scenario: Deleting a blueprint
+    Given the user assets has the following blueprint saved as "test_sample"
+      """
+      name: created-using-cuke
+      windows:
+        - panes: ls
+      """
+    When I invoke Automux to "delete" the blueprint "test_sample"
+    Then the rendered sequence of shell commands should be
+      """
+      rm $HOME/.automux/blueprints/test_sample.yml
+      echo test_sample.yml deleted
+      """
+
+  Scenario: Deleting blueprint using the alias
+    Given the user assets has the following blueprint saved as "test_sample"
+      """
+      name: created-using-cuke
+      windows:
+        - panes: ls
+      """
+    When I invoke Automux to "rm" the blueprint "test_sample"
+    Then the rendered sequence of shell commands should be
+      """
+      rm $HOME/.automux/blueprints/test_sample.yml
+      echo test_sample.yml deleted
+      """

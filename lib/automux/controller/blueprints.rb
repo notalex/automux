@@ -1,7 +1,7 @@
 module Automux
   module Controller
     class Blueprints < Base
-      before_filter :load_blueprint, only: [:edit, :copy, :cp]
+      before_filter :load_blueprint, only: [:edit, :copy, :cp, :delete, :rm]
 
       def edit
         @binding = @blueprint.get_binding
@@ -22,6 +22,12 @@ module Automux
         render 'copy'
       end
       alias_method :cp, :copy
+
+      def delete
+        @binding = @blueprint.get_binding
+        render 'delete'
+      end
+      alias_method :rm, :delete
 
       private ###
 
