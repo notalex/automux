@@ -1,7 +1,7 @@
 module Automux
   module Core
     class Blueprint < Base
-      attr_reader :name, :path
+      attr_reader :name, :path, :source_blueprint
 
       def initialize(path)
         @name = File.basename(path, '.yml')
@@ -14,6 +14,10 @@ module Automux
 
       def get_binding
         binding
+      end
+
+      def source=(blueprint)
+        @source_blueprint = blueprint
       end
 
       class << self

@@ -1,0 +1,2 @@
+cp <%= source_blueprint.path %> <%= path %>
+echo <%= File.basename(source_blueprint.path) %> copied

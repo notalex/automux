@@ -23,3 +23,11 @@ Feature: Creating, Cloning, Editing and Deleting Blueprints
       cp $HOME/.automux/blueprints/default.yml $HOME/.automux/blueprints/test_sample.yml
       $EDITOR $HOME/.automux/blueprints/test_sample.yml
       """
+
+  Scenario: Copying a blueprint
+    When I call Automux to "copy" the blueprint "default" as "test_sample"
+    Then the rendered sequence of shell commands should be
+      """
+      cp $HOME/.automux/blueprints/default.yml $HOME/.automux/blueprints/test_sample.yml
+      echo default.yml copied
+      """

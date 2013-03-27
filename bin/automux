@@ -10,7 +10,7 @@ when 'setup'
   Automux::Setup.user_assets_folders
   Automux::Setup.clone_default_files
 when 'blueprint'
-  params = { name: ARGV[2] }
+  params = { name: ARGV[2], clone_name: ARGV[3] }
   Automux::Controller::Blueprints.new(params).send(ARGV[1])
 else
   params = { blueprint_name: ARGV[0], recipe_name: 'default' }
