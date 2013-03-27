@@ -23,8 +23,6 @@ module Automux
         @session = Automux::Core::Tmux::Session.new(@blueprint.read)
         @session.setup_windows_and_hooks
       end
-
-      self.superclass.after_inherited(self)
     end
   end
 end
