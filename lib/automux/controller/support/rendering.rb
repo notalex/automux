@@ -33,6 +33,7 @@ module Automux
 
           if ENV['AUTOMUX_ENV'] == 'test'
             File.open('/tmp/results', 'w') { |f| f.write(modified_result) }
+            exit
           else
             exec(modified_result)
           end

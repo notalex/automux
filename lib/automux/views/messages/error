@@ -1,0 +1,3 @@
+printf "\033[0;31m"
+echo <%= message %>
+printf "\033[0m"
