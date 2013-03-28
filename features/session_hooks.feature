@@ -1,7 +1,7 @@
 Feature: Using pre and post hooks for session
 
   Background:
-    Given the user assets folders are setup
+    Given Automux is setup
 
   Scenario: Using session hooks
     Given I provide the following blueprint

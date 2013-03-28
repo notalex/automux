@@ -1,4 +1,4 @@
-Given /^the user assets folders are setup$/ do
+Given /^Automux is setup$/ do
   system %[bin/automux setup]
 end
 

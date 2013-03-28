@@ -1,7 +1,7 @@
 Feature: Handling various errors with relevant messages
 
   Background:
-    Given the user assets folders are setup
+    Given Automux is setup
 
   Scenario: Trying to use a non existing blueprint
     When I invoke Automux with the blueprint "test_sample"

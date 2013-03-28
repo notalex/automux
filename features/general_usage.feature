@@ -4,7 +4,7 @@ I want to run Automux with a blueprint
 In order to run the shell commands matching the given blueprint
 
   Background:
-    Given the user assets folders are setup
+    Given Automux is setup
 
   Scenario: A 4 window blueprint with some fixed indexes and subpanes
     Given I provide the following blueprint
