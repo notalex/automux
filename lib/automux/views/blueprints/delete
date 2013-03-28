@@ -1,2 +1,0 @@
-rm <%= path %>
-echo <%= File.basename(path) %> deleted

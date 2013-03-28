@@ -4,7 +4,7 @@ module Automux
       attr_reader :name, :path
 
       def initialize(path)
-        @name = File.basename(path)
+        @name = File.basename(path, '.sh.erb')
         @path = path
       end
     end

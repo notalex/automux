@@ -7,7 +7,7 @@ module Automux
     end
 
     def default_recipe
-      File.join(data, 'recipes', 'default')
+      File.join(data, 'recipes', 'default.sh.erb')
     end
 
     def data
