@@ -3,6 +3,7 @@ module Automux
     class Recipes < Base
       before_filter :load_recipe, only: :automate
       before_filter :load_blueprint, only: :automate
+      before_filter :check_blueprint, only: :automate
       before_filter :load_and_setup_session, only: :automate
 
       def automate
@@ -18,6 +19,10 @@ module Automux
 
       def load_blueprint
         @blueprint = Automux::Cache::Blueprint.find_by_name(params[:blueprint_name])
+      end
+
+      def check_blueprint
+        notify_error 'No matching blueprint found' if @blueprint.nil?
       end
 
       def load_and_setup_session
