@@ -79,6 +79,7 @@ module Automux
           @windows << window
         end
 
+        # When multiple windows have been assigned the same index by the user, the additional window indexes will be removed.
         def remove_duplicate_indexes(original_data)
           non_indexed_data = original_data.select { |h| h['index'].to_s.empty? }
           indexed_data = original_data - non_indexed_data

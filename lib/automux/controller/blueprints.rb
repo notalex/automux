@@ -3,11 +3,15 @@ module Automux
     class Blueprints < Base
       before_filter :load_blueprint, only: [:edit, :copy, :cp, :delete, :rm]
 
+      # blueprint_name.yml will be searched under $HOME/.automux/blueprints
+      # $ automux blueprint edit blueprint_name
       def edit
         @binding = @blueprint.get_binding
         render 'edit'
       end
 
+      # This copies the content from default.yml and opens the new file using $EDITOR
+      # $ automux blueprint create new_blueprint_name
       def create
         blueprint = Automux::Core::Blueprint.build_by_name(params[:name])
         blueprint.source = Automux::Cache::Blueprint.find_by_name('default')
@@ -15,6 +19,7 @@ module Automux
         render 'create'
       end
 
+      # $ automux blueprint copy source destination
       def copy
         clone_blueprint = Automux::Core::Blueprint.build_by_name(params[:clone_name])
         clone_blueprint.source = @blueprint
@@ -23,6 +28,7 @@ module Automux
       end
       alias_method :cp, :copy
 
+      # $ automux blueprint delete some_blueprint
       def delete
         @binding = @blueprint.get_binding
         render 'delete'

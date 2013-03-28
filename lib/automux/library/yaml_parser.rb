@@ -13,12 +13,15 @@ module Automux
 
         private ###
 
+        # Scan blueprint for patterns like "-\w" or '-\w' to get a options list.
+        # The options list is used by OptionsParser to read the options from commandline.
         def replace_opts_with_user_input(string)
           blueprint_opts = string.scan(/['|"]-(\w:?)['|"]/m).flatten
           user_input_values = get_options(blueprint_opts)
           replace_opts(string, user_input_values)
         end
 
+        # Replace patterns like "-\w" with matching commandline option.
         def replace_opts(string, values)
           values.each do |k, v|
             # Interpolate #{ v } - to substitute literal booleans.
