@@ -13,7 +13,7 @@ module Automux
         # before_filter does not define its logic right away.
         def before_filter(filter_name, options)
           [options[:only]].flatten.each do |action|
-            filters_add(filter_name, action)
+            add_filter(filter_name, action)
           end
         end
 
@@ -45,7 +45,7 @@ module Automux
 
         private ###
 
-        def filters_add(filter_name, action)
+        def add_filter(filter_name, action)
           filters[action] ||= []
           filters[action] << filter_name
         end
