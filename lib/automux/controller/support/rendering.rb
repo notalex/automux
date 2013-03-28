@@ -4,17 +4,22 @@ module Automux
       module Rendering
         def render(view)
           path =
+          # If the full path to the file is given, use that instead.
           if FileTest.exists?(view)
             view
           else
-            views_folder_name = demodulize(self.class.name).downcase
-            File.join(Paths.views, views_folder_name, view)
+            deduce_full_path(view)
           end
 
           execute Automux::Library::MiniErb.new(File.read(path)).result(@binding)
         end
 
         private ###
+
+        def deduce_full_path(view)
+          views_folder_name = demodulize(self.class.name).downcase
+          File.join(Paths.views, views_folder_name, view)
+        end
 
         def execute(result)
           modified_result = remove_empty_lines(result)
