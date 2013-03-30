@@ -5,7 +5,7 @@ module Automux
         include Support::HooksHelper
         include Support::OptionsHelper
 
-        attr_reader :data, :name, :root, :data_windows, :flags
+        attr_reader :data, :name, :root, :data_windows, :flags, :base_index
         dup_attr_reader :windows, :hooks, :options
         private :data, :data_windows
 
@@ -65,6 +65,7 @@ module Automux
 
         def setup
           setup_options
+          setup_base_index
           setup_windows
           setup_hooks
         end
@@ -74,8 +75,8 @@ module Automux
         end
 
         def next_available_window_index
-          n = number_of_windows
-          (Array(0..n) - window_indexes).first
+          n = base_index + number_of_windows
+          (Array(base_index..n) - window_indexes).first
         end
 
         private ###
@@ -116,6 +117,13 @@ module Automux
           add_windows(windows_data)
           @windows.each(&:update_index)
           @windows.each(&:setup)
+        end
+
+        def setup_base_index
+          @base_index = 0
+          if option = options.find { |option| option.name == 'base-index' }
+            @base_index = option.value.to_i
+          end
         end
 
         def get_window(identifier)
