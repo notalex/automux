@@ -6,7 +6,7 @@ end
 
 When(/^the windows are setup$/) do
   @session = Automux::Core::Tmux::Session.new(@data)
-  @session.setup_windows_and_hooks
+  @session.setup
 end
 
 Then(/^the window with the name "(.+)" should have the following$/) do |name, table|

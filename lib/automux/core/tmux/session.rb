@@ -63,7 +63,7 @@ module Automux
           binding
         end
 
-        def setup_windows_and_hooks
+        def setup
           setup_windows
           setup_hooks
           setup_options
@@ -115,7 +115,7 @@ module Automux
           windows_data = remove_duplicate_indexes(data_windows)
           add_windows(windows_data)
           @windows.each(&:update_index)
-          @windows.each(&:setup_panes_and_hooks)
+          @windows.each(&:setup)
         end
 
         def get_window(identifier)

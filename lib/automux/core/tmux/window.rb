@@ -30,7 +30,7 @@ module Automux
           data['name']
         end
 
-        def setup_panes_and_hooks
+        def setup
           setup_panes
           setup_hooks
           setup_options
