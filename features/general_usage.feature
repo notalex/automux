@@ -34,7 +34,7 @@ In order to run the shell commands matching the given blueprint
       cd ~/projects
 
       tmux start-server
-      tmux -u2 new-session -d -s test
+      tmux new-session -d -s test
 
       tmux new-window -t test:2 2> /dev/null
       tmux rename-window -t test:2 editor
@@ -60,7 +60,7 @@ In order to run the shell commands matching the given blueprint
       tmux split-window
       tmux send-keys -t test:0 "echo hello" C-m
 
-      tmux -u2 attach-session -t test
+      tmux attach-session -t test
       """
 
   Scenario: Windows with clashing index values
@@ -82,7 +82,7 @@ In order to run the shell commands matching the given blueprint
       cd ~
 
       tmux start-server
-      tmux -u2 new-session -d -s test
+      tmux new-session -d -s test
 
       tmux new-window -t test:1 2> /dev/null
       tmux rename-window -t test:1 editor
@@ -92,7 +92,7 @@ In order to run the shell commands matching the given blueprint
       tmux rename-window -t test:0 top
       tmux send-keys -t test:0 "top" C-m
 
-      tmux -u2 attach-session -t test
+      tmux attach-session -t test
       """
 
   Scenario: Only session name is provided
@@ -106,9 +106,9 @@ In order to run the shell commands matching the given blueprint
       cd .
 
       tmux start-server
-      tmux -u2 new-session -d -s window-less
+      tmux new-session -d -s window-less
 
-      tmux -u2 attach-session -t window-less
+      tmux attach-session -t window-less
       """
 
   Scenario: Providing no name for a window
@@ -124,12 +124,34 @@ In order to run the shell commands matching the given blueprint
       cd .
 
       tmux start-server
-      tmux -u2 new-session -d -s name-less
+      tmux new-session -d -s name-less
 
       tmux new-window -t name-less:0 2> /dev/null
       tmux send-keys -t name-less:0 "git pull origin master" C-m
 
-      tmux -u2 attach-session -t name-less
+      tmux attach-session -t name-less
+      """
+
+  Scenario: Providing flags for tmux
+    Given I provide the following blueprint
+      """
+      name: flagged
+      flags: -u2
+      windows:
+        - panes: vim
+      """
+    When Automux processes this blueprint
+    Then the rendered sequence of shell commands should be
+      """
+      cd .
+
+      tmux start-server
+      tmux -u2 new-session -d -s flagged
+
+      tmux new-window -t flagged:0 2> /dev/null
+      tmux send-keys -t flagged:0 "vim" C-m
+
+      tmux -u2 attach-session -t flagged
       """
 
   Scenario: Windows with seperate roots
@@ -148,7 +170,7 @@ In order to run the shell commands matching the given blueprint
       cd ~
 
       tmux start-server
-      tmux -u2 new-session -d -s test
+      tmux new-session -d -s test
 
       tmux new-window -t test:0 2> /dev/null
       tmux send-keys -t test:0 "cd projects" C-m
@@ -157,5 +179,5 @@ In order to run the shell commands matching the given blueprint
       tmux new-window -t test:1 2> /dev/null
       tmux send-keys -t test:1 "top" C-m
 
-      tmux -u2 attach-session -t test
+      tmux attach-session -t test
       """

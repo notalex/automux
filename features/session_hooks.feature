@@ -22,9 +22,9 @@ Feature: Using pre and post hooks for session
       rvm use automux
 
       tmux start-server
-      tmux -u2 new-session -d -s hooked
+      tmux new-session -d -s hooked
 
-      tmux -u2 attach-session -t hooked
+      tmux attach-session -t hooked
 
       echo 'I will be back'
       """
@@ -54,7 +54,7 @@ Feature: Using pre and post hooks for session
       echo hooked
 
       tmux start-server
-      tmux -u2 new-session -d -s hooked
+      tmux new-session -d -s hooked
 
       tmux new-window -t hooked:0 2> /dev/null
       tmux send-keys -t hooked:0 "pwd" C-m
@@ -67,5 +67,5 @@ Feature: Using pre and post hooks for session
       tmux send-keys -t hooked:1 "ls" C-m
       tmux send-keys -t hooked:1 "echo echoed-window complete" C-m
 
-      tmux -u2 attach-session -t hooked
+      tmux attach-session -t hooked
       """

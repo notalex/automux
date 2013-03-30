@@ -21,9 +21,9 @@ Feature: Providing runtime options for blueprints
       cd test
 
       tmux start-server
-      tmux -u2 new-session -d -s test
+      tmux new-session -d -s test
 
-      tmux -u2 attach-session -t test
+      tmux attach-session -t test
       """
 
   Scenario: Completing partial commands at runtime
@@ -42,13 +42,13 @@ Feature: Providing runtime options for blueprints
       cd .
 
       tmux start-server
-      tmux -u2 new-session -d -s test
+      tmux new-session -d -s test
 
       tmux new-window -t test:0 2> /dev/null
       tmux rename-window -t test:0 git
       tmux send-keys -t test:0 "git pull origin master" C-m
 
-      tmux -u2 attach-session -t test
+      tmux attach-session -t test
       """
 
   Scenario: Providing combined runtime options
@@ -72,7 +72,7 @@ Feature: Providing runtime options for blueprints
       cd projects
 
       tmux start-server
-      tmux -u2 new-session -d -s test
+      tmux new-session -d -s test
 
       tmux new-window -t test:0 2> /dev/null
       tmux rename-window -t test:0 vim
@@ -82,6 +82,6 @@ Feature: Providing runtime options for blueprints
       tmux rename-window -t test:1 top
       tmux send-keys -t test:1 "top" C-m
 
-      tmux -u2 attach-session -t test
+      tmux attach-session -t test
       """
 

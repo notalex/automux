@@ -4,7 +4,7 @@ module Automux
       class Session < Base
         include Support::HooksHelper
 
-        attr_reader :data, :name, :root, :data_windows
+        attr_reader :data, :name, :root, :data_windows, :flags
         dup_attr_reader :windows, :hooks
         private :data, :data_windows
 
@@ -15,6 +15,7 @@ module Automux
           @data_windows = data['windows'] || []
           @data_hooks = data['hooks'] || []
           @windows = []
+          @flags = data['flags']
           @hooks = []
         end
 
@@ -23,7 +24,7 @@ module Automux
         end
 
         def new_session
-          %[tmux -u2 new-session -d -s #{ name }]
+          %[#{ tmux_with_flags } new-session -d -s #{ name }]
         end
 
         def new_window(window)
@@ -40,7 +41,7 @@ module Automux
         end
 
         def attach_session
-          %[tmux -u2 attach-session -t #{ name }]
+          %[#{ tmux_with_flags } attach-session -t #{ name }]
         end
 
         def select_layout(window)
@@ -70,6 +71,10 @@ module Automux
         end
 
         private ###
+
+        def tmux_with_flags
+          %[tmux #{ flags }].strip
+        end
 
         def number_of_windows
           @windows.length
