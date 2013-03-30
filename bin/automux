@@ -7,8 +7,7 @@ require 'automux'
 
 case ARGV[0]
 when 'setup'
-  Automux::Setup.user_assets_folders
-  Automux::Setup.clone_default_files
+  Automux::Controller::Setup.new.clone_defaults
 when 'blueprint'
   params = { name: ARGV[2], clone_name: ARGV[3] }
   Automux::Controller::Blueprints.new(params).send(ARGV[1])

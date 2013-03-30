@@ -1,5 +1,6 @@
 require 'automux/controller/support'
 require 'automux/controller/base'
+require 'automux/controller/setup'
 require 'automux/controller/recipes'
 require 'automux/controller/blueprints'
 require 'automux/controller/messages'
