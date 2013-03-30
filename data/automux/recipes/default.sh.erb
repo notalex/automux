@@ -7,6 +7,10 @@ cd <%= root %>
 = start_server
 = new_session
 
+- options.each do |option|
+  = set_option(option)
+- end
+
 - windows.each do |window|
   = new_window(window)
   = rename_window(window) if window.name
@@ -21,6 +25,10 @@ cd <%= root %>
     - window.panes.each do |pane|
       = create_pane if pane.index > 0
       = send_keys(window, pane.command)
+    - end
+
+    - window.options.each do |option|
+      = window.set_option(option)
     - end
 
     - window.post_hooks.each do |hook|

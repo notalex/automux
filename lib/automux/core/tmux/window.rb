@@ -3,9 +3,10 @@ module Automux
     module Tmux
       class Window < Base
         include Support::HooksHelper
+        include Support::OptionsHelper
 
         attr_reader :data, :session, :index, :root
-        dup_attr_reader :panes, :hooks
+        dup_attr_reader :panes, :hooks, :options
         private :data, :session
 
         def initialize(session, data)
@@ -16,7 +17,13 @@ module Automux
           @root = data['root']
           @data_hooks = data['hooks'] || []
           @hooks = []
+          @data_options = data['options'] || []
+          @options = []
           @panes = []
+        end
+
+        def set_option(option)
+          %[tmux set-window-option -t #{ session.name }:#{ index } #{ option.name } '#{ option.value }']
         end
 
         def name
@@ -26,6 +33,7 @@ module Automux
         def setup_panes_and_hooks
           setup_panes
           setup_hooks
+          setup_options
         end
 
         def has_panes?

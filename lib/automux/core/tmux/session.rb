@@ -3,9 +3,10 @@ module Automux
     module Tmux
       class Session < Base
         include Support::HooksHelper
+        include Support::OptionsHelper
 
         attr_reader :data, :name, :root, :data_windows, :flags
-        dup_attr_reader :windows, :hooks
+        dup_attr_reader :windows, :hooks, :options
         private :data, :data_windows
 
         def initialize(blueprint_data)
@@ -17,6 +18,8 @@ module Automux
           @windows = []
           @flags = data['flags']
           @hooks = []
+          @data_options = data['options'] || []
+          @options = []
         end
 
         def start_server
@@ -25,6 +28,10 @@ module Automux
 
         def new_session
           %[#{ tmux_with_flags } new-session -d -s #{ name }]
+        end
+
+        def set_option(option)
+          %[tmux set-option #{ option.name } '#{ option.value }']
         end
 
         def new_window(window)
@@ -59,6 +66,7 @@ module Automux
         def setup_windows_and_hooks
           setup_windows
           setup_hooks
+          setup_options
         end
 
         def window_indexes
