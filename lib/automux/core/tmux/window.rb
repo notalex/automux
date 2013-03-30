@@ -31,9 +31,9 @@ module Automux
         end
 
         def setup
+          setup_options
           setup_panes
           setup_hooks
-          setup_options
         end
 
         def has_panes?

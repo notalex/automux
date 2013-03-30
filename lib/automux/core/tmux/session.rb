@@ -64,9 +64,9 @@ module Automux
         end
 
         def setup
+          setup_options
           setup_windows
           setup_hooks
-          setup_options
         end
 
         def window_indexes
