@@ -154,7 +154,7 @@ In order to run the shell commands matching the given blueprint
       tmux -u2 attach-session -t flagged
       """
 
-  Scenario: Windows with seperate roots
+  Scenario: Windows with separate roots
     Given I provide the following blueprint
       """
       name: test
