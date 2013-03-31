@@ -1,5 +1,21 @@
-mkdir -p <%= Automux::Paths.blueprints_container %>
-mkdir -p <%= Automux::Paths.recipes_container %>
+setup() {
+  mkdir -p <%= Automux::Paths.blueprints_container %>
+  mkdir -p <%= Automux::Paths.recipes_container %>
 
-cp <%= Automux::Paths.default_blueprint %> <%= Automux::Paths.blueprints_container %>
-cp <%= Automux::Paths.default_recipe %> <%= Automux::Paths.recipes_container %>
+  cp <%= Automux::Paths.default_blueprint %> <%= Automux::Paths.blueprints_container %>
+  cp <%= Automux::Paths.default_recipe %> <%= Automux::Paths.recipes_container %>
+
+  echo default files copied
+}
+
+if [ -d <%= Automux::Paths.blueprints_container %> ]; then
+  read -r -p "This will replace the default blueprint and recipe under ~/.automux. Continue? [Y/n] " response
+
+  case $response in
+   [yY][eE][sS]|[yY])
+     setup
+   ;;
+  esac
+else
+  setup
+fi
