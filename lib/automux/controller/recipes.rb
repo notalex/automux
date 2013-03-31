@@ -4,6 +4,7 @@ module Automux
       before_filter :load_recipe, only: :automate
       before_filter :load_blueprint, only: :automate
       before_filter :check_blueprint, only: :automate
+      before_filter :check_recipe, only: :automate
       before_filter :load_and_setup_session, only: :automate
 
       def automate
@@ -23,6 +24,10 @@ module Automux
 
       def check_blueprint
         notify_error "Unable to find blueprint named #{ params[:blueprint_name] }.yml" if @blueprint.nil?
+      end
+
+      def check_recipe
+        notify_error "Unable to find recipe named #{ params[:recipe_name] }.sh.erb" if @recipe.nil?
       end
 
       def load_and_setup_session
