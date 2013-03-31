@@ -5,16 +5,18 @@ $LOAD_PATH.unshift(lib_path) unless $LOAD_PATH.include?(lib_path)
 
 require 'automux'
 
-case ARGV[0]
+args = ARGV.take_while { |argument| argument.match(/^\w/) }
+
+case args[0]
 when 'setup'
   Automux::Controller::Setup.new.clone_defaults
 when 'blueprint'
-  params = { name: ARGV[2], clone_name: ARGV[3] }
-  Automux::Controller::Blueprints.new(params).send(ARGV[1])
+  params = { name: args[2], clone_name: args[3] }
+  Automux::Controller::Blueprints.new(params).send(args[1])
 else
   params = {
-    blueprint_name: ARGV[0] || 'default',
-    recipe_name:    ARGV[1] || 'default'
+    blueprint_name: args[0] || 'default',
+    recipe_name:    args[1] || 'default'
   }
   Automux::Controller::Recipes.new(params).automate
 end
