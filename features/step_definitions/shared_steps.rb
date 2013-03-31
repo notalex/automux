@@ -3,14 +3,9 @@ Given(/^I have the following blueprint named "(.+)"$/) do |name, string|
   File.open(path, 'w') { |f| f.write(string) }
 end
 
-When(/^Automux processes this blueprint$/) do
-  system %[bin/automux test_sample]
-  @results = File.read('/tmp/results')
-end
-
-When(/^Automux processes this blueprint with the following options$/) do |table|
+When(/^Automux processes the blueprint "(.+)" with the following options$/) do |name, table|
   opts = table.hashes.map { |h| h.values }.flatten.join(' ')
-  system %[bin/automux test_sample #{ opts }]
+  system %[bin/automux #{ name } #{ opts }]
   @results = File.read('/tmp/results')
 end
 

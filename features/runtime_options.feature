@@ -10,7 +10,7 @@ Feature: Providing runtime options for blueprints
           opt: '-t'
           panes: top
       """
-    When Automux processes this blueprint with the following options
+    When Automux processes the blueprint "test_sample" with the following options
       | option | value |
       | -r     | test  |
     Then the rendered sequence of shell commands should be
@@ -31,7 +31,7 @@ Feature: Providing runtime options for blueprints
         - name: git
           panes: git pull "-r:" master
       """
-    When Automux processes this blueprint with the following options
+    When Automux processes the blueprint "test_sample" with the following options
       | option | value  |
       | -r     | origin |
     Then the rendered sequence of shell commands should be
@@ -61,7 +61,7 @@ Feature: Providing runtime options for blueprints
           opt: '-t'
           panes: top
       """
-    When Automux processes this blueprint with the following options
+    When Automux processes the blueprint "test_sample" with the following options
       | option | value    |
       | -vtr     | projects |
     Then the rendered sequence of shell commands should be

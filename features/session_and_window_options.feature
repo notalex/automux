@@ -15,7 +15,7 @@ Feature: Handling session/window specific options
             automatic-rename: off
             window-status-bg: black
       """
-    When Automux processes this blueprint
+    When I invoke Automux with the blueprint "test_sample"
     Then the rendered sequence of shell commands should be
       """
       cd .
@@ -47,7 +47,7 @@ Feature: Handling session/window specific options
         - panes: pwd
         - panes: ls
       """
-    When Automux processes this blueprint
+    When I invoke Automux with the blueprint "test_sample"
     Then the rendered sequence of shell commands should be
       """
       cd .

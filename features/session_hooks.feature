@@ -10,7 +10,7 @@ Feature: Using pre and post hooks for session
           - "rvm use automux"
         post: "echo 'I will be back'"
       """
-    When Automux processes this blueprint
+    When I invoke Automux with the blueprint "test_sample"
     Then the rendered sequence of shell commands should be
       """
       cd .
@@ -43,7 +43,7 @@ Feature: Using pre and post hooks for session
           panes:
             - ls
       """
-    When Automux processes this blueprint
+    When I invoke Automux with the blueprint "test_sample"
     Then the rendered sequence of shell commands should be
       """
       cd .

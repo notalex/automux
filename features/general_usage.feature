@@ -25,7 +25,7 @@ In order to run the shell commands matching the given blueprint
           index: 0
           panes: [pwd, echo hello]
       """
-    When Automux processes this blueprint
+    When I invoke Automux with the blueprint "test_sample"
     Then the rendered sequence of shell commands should be
       """
       cd ~/projects
@@ -73,7 +73,7 @@ In order to run the shell commands matching the given blueprint
           panes: top
           index: 1
       """
-    When Automux processes this blueprint
+    When I invoke Automux with the blueprint "test_sample"
     Then the rendered sequence of shell commands should be
       """
       cd ~
@@ -97,7 +97,7 @@ In order to run the shell commands matching the given blueprint
       """
       name: window-less
       """
-    When Automux processes this blueprint
+    When I invoke Automux with the blueprint "test_sample"
     Then the rendered sequence of shell commands should be
       """
       cd .
@@ -115,7 +115,7 @@ In order to run the shell commands matching the given blueprint
       windows:
         - panes: git pull origin master
       """
-    When Automux processes this blueprint
+    When I invoke Automux with the blueprint "test_sample"
     Then the rendered sequence of shell commands should be
       """
       cd .
@@ -137,7 +137,7 @@ In order to run the shell commands matching the given blueprint
       windows:
         - panes: vim
       """
-    When Automux processes this blueprint
+    When I invoke Automux with the blueprint "test_sample"
     Then the rendered sequence of shell commands should be
       """
       cd .
@@ -161,7 +161,7 @@ In order to run the shell commands matching the given blueprint
           root: 'projects'
         - panes: top
       """
-    When Automux processes this blueprint
+    When I invoke Automux with the blueprint "test_sample"
     Then the rendered sequence of shell commands should be
       """
       cd ~
