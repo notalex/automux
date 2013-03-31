@@ -1,8 +1,5 @@
 Feature: Creating, Cloning, Editing and Deleting Blueprints
 
-  Background:
-    Given Automux is setup
-
   Scenario: Editing a blueprint
     Given the user assets has the following blueprint saved as "test_sample"
       """

@@ -1,8 +1,5 @@
 Feature: Handling session/window specific options
 
-  Background:
-    Given Automux is setup
-
   Scenario: setting options for session and window together
     Given I provide the following blueprint
       """

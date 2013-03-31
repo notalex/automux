@@ -1,7 +1,3 @@
-Given /^Automux is setup$/ do
-  system %[bin/automux setup]
-end
-
 Given(/^I provide the following blueprint$/) do |string|
   File.open("#{ ENV['HOME'] }/.automux/blueprints/test_sample.yml", 'w') { |f| f.write(string) }
 end

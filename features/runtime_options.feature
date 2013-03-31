@@ -1,8 +1,5 @@
 Feature: Providing runtime options for blueprints
 
-  Background:
-    Given Automux is setup
-
   Scenario: Providing commands and disabling windows at runtime
     Given I provide the following blueprint
       """
