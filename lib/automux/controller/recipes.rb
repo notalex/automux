@@ -22,7 +22,7 @@ module Automux
       end
 
       def check_blueprint
-        notify_error 'No matching blueprint found' if @blueprint.nil?
+        notify_error "Unable to find blueprint named #{ params[:blueprint_name] }.yml" if @blueprint.nil?
       end
 
       def load_and_setup_session
