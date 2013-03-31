@@ -25,7 +25,7 @@ module Automux
         # The file will be a bash script with erb support. Hence the need of a @binding object.
         def deduce_full_path(view)
           views_folder_name = demodulize(self.class.name).downcase
-          File.join(Paths.views, views_folder_name, "#{ view }.sh.erb")
+          File.join(Paths.root, Paths.views, views_folder_name, "#{ view }.sh.erb")
         end
 
         def execute(result)
