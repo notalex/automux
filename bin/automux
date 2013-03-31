@@ -12,6 +12,9 @@ when 'blueprint'
   params = { name: ARGV[2], clone_name: ARGV[3] }
   Automux::Controller::Blueprints.new(params).send(ARGV[1])
 else
-  params = { blueprint_name: ARGV[0], recipe_name: 'default' }
+  params = {
+    blueprint_name: ARGV[0] || 'default',
+    recipe_name:    ARGV[1] || 'default'
+  }
   Automux::Controller::Recipes.new(params).automate
 end
