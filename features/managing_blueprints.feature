@@ -1,7 +1,7 @@
 Feature: Creating, Cloning, Editing and Deleting Blueprints
 
   Scenario: Editing a blueprint
-    Given the user assets has the following blueprint saved as "test_sample"
+    Given I have the following blueprint named "test_sample"
       """
       name: created-using-cuke
       windows:
@@ -38,7 +38,7 @@ Feature: Creating, Cloning, Editing and Deleting Blueprints
       """
 
   Scenario: Deleting a blueprint
-    Given the user assets has the following blueprint saved as "test_sample"
+    Given I have the following blueprint named "test_sample"
       """
       name: created-using-cuke
       windows:
@@ -52,7 +52,7 @@ Feature: Creating, Cloning, Editing and Deleting Blueprints
       """
 
   Scenario: Deleting blueprint using the alias
-    Given the user assets has the following blueprint saved as "test_sample"
+    Given I have the following blueprint named "test_sample"
       """
       name: created-using-cuke
       windows:

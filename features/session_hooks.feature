@@ -1,7 +1,7 @@
 Feature: Using pre and post hooks for session
 
   Scenario: Using session hooks
-    Given I provide the following blueprint
+    Given I have the following blueprint named "test_sample"
       """
       name: hooked
       hooks:
@@ -27,7 +27,7 @@ Feature: Using pre and post hooks for session
       """
 
   Scenario: Using window hooks
-    Given I provide the following blueprint
+    Given I have the following blueprint named "test_sample"
       """
       name: hooked
       hooks:

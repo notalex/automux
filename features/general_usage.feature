@@ -4,7 +4,7 @@ I want to run Automux with a blueprint
 In order to run the shell commands matching the given blueprint
 
   Scenario: A 4 window blueprint with some fixed indexes and subpanes
-    Given I provide the following blueprint
+    Given I have the following blueprint named "test_sample"
       """
       name: test
       root: ~/projects
@@ -61,7 +61,7 @@ In order to run the shell commands matching the given blueprint
       """
 
   Scenario: Windows with clashing index values
-    Given I provide the following blueprint
+    Given I have the following blueprint named "test_sample"
       """
       name: test
       root: '~'
@@ -93,7 +93,7 @@ In order to run the shell commands matching the given blueprint
       """
 
   Scenario: Only session name is provided
-    Given I provide the following blueprint
+    Given I have the following blueprint named "test_sample"
       """
       name: window-less
       """
@@ -109,7 +109,7 @@ In order to run the shell commands matching the given blueprint
       """
 
   Scenario: Providing no name for a window
-    Given I provide the following blueprint
+    Given I have the following blueprint named "test_sample"
       """
       name: name-less
       windows:
@@ -130,7 +130,7 @@ In order to run the shell commands matching the given blueprint
       """
 
   Scenario: Providing flags for tmux
-    Given I provide the following blueprint
+    Given I have the following blueprint named "test_sample"
       """
       name: flagged
       flags: -u2
@@ -152,7 +152,7 @@ In order to run the shell commands matching the given blueprint
       """
 
   Scenario: Windows with separate roots
-    Given I provide the following blueprint
+    Given I have the following blueprint named "test_sample"
       """
       name: test
       root: '~'

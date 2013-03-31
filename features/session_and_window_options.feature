@@ -1,7 +1,7 @@
 Feature: Handling session/window specific options
 
   Scenario: setting options for session and window together
-    Given I provide the following blueprint
+    Given I have the following blueprint named "test_sample"
       """
       name: test
       options:
@@ -38,7 +38,7 @@ Feature: Handling session/window specific options
       """
 
   Scenario: Setting the base index
-    Given I provide the following blueprint
+    Given I have the following blueprint named "test_sample"
       """
       name: test
       options:

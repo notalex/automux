@@ -1,7 +1,7 @@
 Feature: Providing runtime options for blueprints
 
   Scenario: Providing commands and disabling windows at runtime
-    Given I provide the following blueprint
+    Given I have the following blueprint named "test_sample"
       """
       name: test
       root: '-r:'
@@ -24,7 +24,7 @@ Feature: Providing runtime options for blueprints
       """
 
   Scenario: Completing partial commands at runtime
-    Given I provide the following blueprint
+    Given I have the following blueprint named "test_sample"
       """
       name: test
       windows:
@@ -49,7 +49,7 @@ Feature: Providing runtime options for blueprints
       """
 
   Scenario: Providing combined runtime options
-    Given I provide the following blueprint
+    Given I have the following blueprint named "test_sample"
       """
       name: test
       root: '-r:'

@@ -1,5 +1,6 @@
-Given(/^I provide the following blueprint$/) do |string|
-  File.open("#{ ENV['HOME'] }/.automux/blueprints/test_sample.yml", 'w') { |f| f.write(string) }
+Given(/^I have the following blueprint named "(.+)"$/) do |name, string|
+  path = File.join(Automux::Paths.blueprints_container, "#{ name }.yml")
+  File.open(path, 'w') { |f| f.write(string) }
 end
 
 When(/^Automux processes this blueprint$/) do
