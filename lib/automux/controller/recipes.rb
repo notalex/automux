@@ -22,10 +22,6 @@ module Automux
         @blueprint = Automux::Cache::Blueprint.find_by_name(params[:blueprint_name])
       end
 
-      def check_blueprint
-        notify_error "Unable to find blueprint named #{ params[:blueprint_name] }.yml" if @blueprint.nil?
-      end
-
       def check_recipe
         notify_error "Unable to find recipe named #{ params[:recipe_name] }.sh.erb" if @recipe.nil?
       end

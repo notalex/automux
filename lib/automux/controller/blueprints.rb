@@ -2,6 +2,7 @@ module Automux
   module Controller
     class Blueprints < Base
       before_filter :load_blueprint, only: [:edit, :copy, :cp, :delete, :rm]
+      before_filter :check_blueprint, only: [:edit, :copy, :cp, :delete, :rm]
 
       # blueprint_name.yml will be searched under $HOME/.automux/blueprints
       # $ automux blueprint edit blueprint_name
