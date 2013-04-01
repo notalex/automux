@@ -11,7 +11,7 @@ case args[0]
 when 'setup'
   Automux::Controller::Setup.new.clone_defaults
 when 'blueprint'
-  params = { name: args[2], clone_name: args[3] }
+  params = { blueprint_name: args[2], clone_name: args[3] }
   Automux::Controller::Blueprints.new(params).send(args[1])
 else
   params = {

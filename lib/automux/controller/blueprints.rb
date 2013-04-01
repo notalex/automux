@@ -13,7 +13,7 @@ module Automux
       # This copies the content from default.yml and opens the new file using $EDITOR
       # $ automux blueprint create new_blueprint_name
       def create
-        blueprint = Automux::Core::Blueprint.build_by_name(params[:name])
+        blueprint = Automux::Core::Blueprint.build_by_name(params[:blueprint_name])
         blueprint.source = Automux::Cache::Blueprint.find_by_name('default')
         @binding = blueprint.get_binding
         render 'create'
@@ -38,7 +38,7 @@ module Automux
       private ###
 
       def load_blueprint
-        @blueprint = Automux::Cache::Blueprint.find_by_name(params[:name])
+        @blueprint = Automux::Cache::Blueprint.find_by_name(params[:blueprint_name])
       end
     end
   end
