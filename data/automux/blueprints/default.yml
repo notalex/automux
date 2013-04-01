@@ -2,10 +2,12 @@ name: test
 root: ~/
 flags: -u2
 options:
-  status: off
+  status-left: '#S>'
+hooks:
+  pre: echo 'Starting session'
 windows:
   - name: panes
-    layout: main-vertical
+    layout: tiled
     panes:
       - irb
       - top
@@ -24,3 +26,6 @@ windows:
     opt: '-r'
     panes:
       - echo 'Created optional window'
+    options:
+      automatic-rename: off
+      window-status-bg: black
