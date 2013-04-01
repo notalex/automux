@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
-
 $:.push File.expand_path("../lib", __FILE__)
+require 'automux/version'
 
 Gem::Specification.new do |gem|
   gem.name          = "automux"
-  gem.version       = File.read('VERSION').strip.chomp
+  gem.version       = Automux::Version::STRING
   gem.authors       = ["Alex Johnson"]
   gem.email         = ["notalexjohnson@gmail.com"]
   gem.description   = %[Automating Tmux Configuration]
