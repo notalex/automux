@@ -1,20 +1,26 @@
 name: test
 root: ~/
+flags: -u2
+options:
+  status: off
 windows:
-  - name: editor
+  - name: panes
     layout: main-vertical
     panes:
-      - ls
+      - irb
       - top
-      - pwd
-  - name: htop
-    panes:
-      - htop
-  - name: tester
+      - ls
+  - name: vim
+    hooks:
+      pre: 
+        - echo 'Starting vim'
+    panes: vim
+  - name: custom-indexed-window
     index: 1
+    hooks:
+      post:
+        - echo 'Running <%= name %>'
+  - name: optional-window
+    opt: '-r'
     panes:
-      - pwd
-  - name: zero
-    index: 0
-    panes:
-      - pwd
+      - echo 'Created optional window'
