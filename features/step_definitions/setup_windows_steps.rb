@@ -13,6 +13,6 @@ Then(/^the window with the name "(.+)" should have the following$/) do |name, ta
   window = @session.windows.find { |window| window.name == name }
   params = common_transformations(table.hashes).first
   params.each do |field, value|
-    window.send(field).must_equal value
+    window.public_send(field).must_equal value
   end
 end

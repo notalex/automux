@@ -12,7 +12,7 @@ when 'setup'
   Automux::Controller::Setup.new.clone_defaults
 when 'blueprint'
   params = { blueprint_name: args[2], clone_name: args[3] }
-  Automux::Controller::Blueprints.new(params).send(args[1])
+  Automux::Controller::Blueprints.new(params).public_send(args[1])
 else
   params = {
     blueprint_name: args[0] || 'default',
