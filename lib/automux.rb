@@ -1,4 +1,5 @@
 require 'automux/version'
+require 'automux/installation'
 require 'automux/paths'
 require 'automux/library'
 require 'automux/core'
