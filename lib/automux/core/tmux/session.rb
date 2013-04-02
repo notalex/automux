@@ -47,6 +47,11 @@ module Automux
           %[tmux send-keys -t #{ name }:#{ window.index } "#{ command }" C-m]
         end
 
+        def select_window(identifier)
+          window = get_window(identifier)
+          %[tmux select-window -t #{ name }:#{ window.index }]
+        end
+
         def attach_session
           %[#{ tmux_with_flags } attach-session -t #{ name }]
         end

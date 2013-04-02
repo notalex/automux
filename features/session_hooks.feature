@@ -8,7 +8,11 @@ Feature: Using pre and post hooks for session
         pre:
           - "echo Hello"
           - "rvm use automux"
-        post: "echo 'I will be back'"
+        post:
+          - <%= select_window 'one' %>
+      windows:
+        - name: one
+        - name: two
       """
     When I invoke Automux with the blueprint "test_sample"
     Then the rendered sequence of shell commands should be
@@ -21,9 +25,17 @@ Feature: Using pre and post hooks for session
       tmux start-server
       tmux new-session -d -s hooked
 
-      tmux attach-session -t hooked
+      tmux new-window -t hooked:0 2> /dev/null
+      tmux rename-window -t hooked:0 one
+      tmux send-keys -t hooked:0 "" C-m
 
-      echo 'I will be back'
+      tmux new-window -t hooked:1 2> /dev/null
+      tmux rename-window -t hooked:1 two
+      tmux send-keys -t hooked:1 "" C-m
+
+      tmux select-window -t hooked:0
+
+      tmux attach-session -t hooked
       """
 
   Scenario: Using window hooks

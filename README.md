@@ -31,13 +31,14 @@ For e.g., the above blueprint will ask *automux* to create two shell windows wit
 __name__: helps to identify your session when `tmux ls` is run. Its the only field thats compulsory.
 
 __root__: automux will `cd` into this path before starting tmux.
+
 __windows__: an array of windows. A tmux session can be started with no windows defined.
 
 __flags__: session specific flags as given in the tmux man page.
 
 __options__: translates each key-value pair into `set-option`. See `man tmux` for the list of available options.
 
-__hooks__: is an hash with `pre` and `post` keys. The specified commands are run before starting tmux and after tmux is attached respectively.
+__hooks__: is an hash with `pre` and `post` keys. The specified commands are run before starting and attaching session respectively.
 
 ## Window Options
 

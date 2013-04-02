@@ -39,8 +39,8 @@ cd <%= root %>
   - end
 - end
 
-= attach_session
-
 - post_hooks.each do |hook|
   = hook.command
 - end
+
+= attach_session
