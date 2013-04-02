@@ -11,6 +11,7 @@ Gem::Specification.new do |gem|
   gem.description   = %[Highly configurable Tmux Automator]
   gem.summary       = %[Automate tmux sessions stored in yaml files using custom recipes]
   gem.homepage      = %[https://github.com/notalex/automux]
+  gem.license       = %[MIT License]
 
   gem.files         = %x[git ls-files].split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map { |f| File.basename(f) }
