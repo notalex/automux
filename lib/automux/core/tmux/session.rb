@@ -52,6 +52,14 @@ module Automux
           %[tmux select-window -t #{ name }:#{ window.index }]
         end
 
+        # Links window from source session to current session. Window name or index must be provided.
+        #
+        # E.g.: link_window(primary, finch, 3)
+        # This links a window named *finch* from an existing session named *primary* as 3rd window in current session.
+        def link_window(source_session_name, source_window_identifier, index = nil)
+          %[tmux link-window -s #{ source_session_name }:#{ source_window_identifier } -t #{ name }:#{ index }]
+        end
+
         def attach_session
           %[#{ tmux_with_flags } attach-session -t #{ name }]
         end
