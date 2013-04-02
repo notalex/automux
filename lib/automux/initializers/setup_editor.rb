@@ -1,1 +1,1 @@
-ENV['EDITOR'] ||= 'vim'
+ENV['EDITOR'] ||= 'vi'
