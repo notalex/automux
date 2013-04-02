@@ -33,7 +33,7 @@ end
 
 def expected_array_for(string)
   expected_string = string.gsub(/\$HOME/, ENV['HOME'])
-  expected_array = expected_string.split("\n").reject { |text| text.split.empty? }
+  expected_array = expected_string.squeeze("\n").split("\n")
   expected_array.map { |text| text.strip }
 end
 

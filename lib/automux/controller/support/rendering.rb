@@ -41,7 +41,7 @@ module Automux
 
         # The recipe files can have empty lines for clarity. Remove them here.
         def remove_empty_lines(string)
-          string.split("\n").reject { |text| text.strip.empty? }.join("\n")
+          string.gsub(/\n\s+\n/, "\n")
         end
 
         # Remove all parent namespacing.
