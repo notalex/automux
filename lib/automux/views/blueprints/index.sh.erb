@@ -1,0 +1,4 @@
+for filename in $(ls <%= Automux::Paths::blueprints_container %>)
+do
+  echo ${filename%.yml}
+done

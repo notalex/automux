@@ -36,6 +36,11 @@ module Automux
       end
       alias_method :rm, :delete
 
+      def index
+        render 'index'
+      end
+      alias_method :list, :index
+
       private ###
 
       def load_blueprint
