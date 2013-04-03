@@ -164,7 +164,7 @@ windows:
 name: test
 windows:
   - name: git
-    panes: git pull '-r:' master
+    panes: git pull origin '-r:'
 ```
 
 * Note: The option needs to be surounded by quotes. It makes Automux's job easier.
