@@ -167,6 +167,21 @@ windows:
     panes: git pull origin '-r:'
 ```
 
+#### Dynamic root values using opts.
+
+**root** defaults to the current directory. One may use an opt to achieve dynamic assignment.
+
+```yaml
+name: test
+root: '-r:'
+windows:
+  - panes: pwd
+```
+
+`automux test -r projects` will change the directory to *projects* before starting Tmux.
+
+`automux test` will use the current directory.
+
 * Note: The option needs to be surounded by quotes. It makes Automux's job easier.
 
 ## Custom defined window indexes
