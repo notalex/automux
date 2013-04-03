@@ -209,7 +209,7 @@ Here the indexing will start from 2 onwards.
 
 > What would Tmux do?
 
-Automux is built on top of an ruby API for Tmux. Instead of providing a custom key for every possible Tmux option, its approach is to provide direct access to the session/window objects. This gives way for higher levels of customizations like allowing end users to add their own session/window methods and using them in the blueprints to letting them define their own recipes for logic. The following sections will look at some these approaches.
+Automux is built on top of an ruby API for Tmux. Instead of providing a custom key for every possible Tmux option, its approach is to provide direct access to the session/window objects. This gives way for higher levels of customizations like allowing end users to add their own session/window methods and using them in the blueprints or letting them define their own recipes for logic. The following sections will look at some these approaches.
 
 ### Hooks with ERB
 
@@ -296,12 +296,14 @@ cd <%= root %>
 = attach_session
 ```
 
-Its a simpler form of ERB much like [HAML](https://github.com/haml/haml) without indentation. The ERB is evaluated with session's context. Hence all methods defined for session are available here. The default recipe comes from the gem and cannot be overwritten. Custom recipes can be run like so:
+Its a simpler form of ERB much like [HAML](https://github.com/haml/haml) without indentation. The ERB is evaluated with session's context. Hence all methods defined for session are available here. Custom recipes can be run like so:
 
 ```sh
 $ automux default custom_recipe
 ```
 _Here default is the default blueprint name._
+
+* Note: The default recipe comes from the Gem and cannot be overwritten. Running `automux default default` will invoke the recipe defined in the Gem instead of any user defined default. The primary reason for this approach is not the burden end users with the necessity to update their default recipe in future releases.
 
 ## Bash Autocompletion
 
