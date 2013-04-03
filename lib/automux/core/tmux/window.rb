@@ -4,30 +4,38 @@ module Automux
       class Window < Base
         include Support::HooksHelper
         include Support::OptionsHelper
+        extend Forwardable
 
-        attr_reader :data, :session, :index, :root
+        attr_reader :data, :session, :index
         dup_attr_reader :panes, :hooks, :options
-        private :data, :session
+        def_delegators :data, :name, :root, :layout
 
-        def initialize(session, data)
+        def initialize(session, window_data)
           @session = session
-          @data = data
-          @opt = data['opt']
-          @index = data['index']
-          @root = data['root']
-          @data_hooks = data['hooks'] || []
           @hooks = []
-          @data_options = data['options'] || []
           @options = []
           @panes = []
+          @data = Data.new(window_data)
+          @index = @data.index
+        end
+
+        class Data
+          attr_reader :opt, :index, :name, :root, :layout, :hooks, :options, :panes
+
+          def initialize(attributes)
+            @opt = attributes['opt']
+            @index = attributes['index']
+            @name = attributes['name']
+            @root = attributes['root']
+            @layout = attributes['layout']
+            @hooks = attributes['hooks'] || []
+            @options = attributes['options'] || []
+            @panes = attributes['panes']
+          end
         end
 
         def set_option(option)
           %[tmux set-window-option -t #{ session.name }:#{ index } #{ option.name } '#{ option.value }']
-        end
-
-        def name
-          data['name']
         end
 
         def setup
@@ -40,18 +48,14 @@ module Automux
           !@panes.nil?
         end
 
-        def layout
-          data['layout']
-        end
-
         def update_index
           @index ||= session.next_available_window_index
         end
 
         def opted_in?
-          return true if @opt.nil?
+          return true if data.opt.nil?
 
-          @opt
+          data.opt
         end
 
         def change_root_command
@@ -65,7 +69,7 @@ module Automux
         private ###
 
         def setup_panes
-          [data['panes']].flatten.each do |command|
+          [data.panes].flatten.each do |command|
             pane = Automux::Core::Tmux::Pane.new(self, command)
             @panes << pane
           end

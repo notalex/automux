@@ -4,22 +4,31 @@ module Automux
       class Session < Base
         include Support::HooksHelper
         include Support::OptionsHelper
+        extend Forwardable
 
-        attr_reader :data, :name, :root, :data_windows, :flags, :base_index
+        attr_reader :data, :base_index
         dup_attr_reader :windows, :hooks, :options
-        private :data, :data_windows
+        def_delegators :data, :name, :root, :flags
 
         def initialize(blueprint_data)
-          @data = blueprint_data
-          @name = data['name']
-          @root = data['root'] || '.'
-          @data_windows = data['windows'] || []
-          @data_hooks = data['hooks'] || []
           @windows = []
-          @flags = data['flags']
           @hooks = []
-          @data_options = data['options'] || []
           @options = []
+          @base_index = 0
+          @data = Data.new(blueprint_data)
+        end
+
+        class Data
+          attr_reader :windows, :hooks, :options, :flags, :name, :root
+
+          def initialize(attributes)
+            @windows = attributes['windows'] || []
+            @hooks = attributes['hooks'] || []
+            @options = attributes['options'] || []
+            @name = attributes['name']
+            @root = attributes['root'] || '.'
+            @flags = attributes['flags']
+          end
         end
 
         def start_server
@@ -126,14 +135,13 @@ module Automux
         end
 
         def setup_windows
-          windows_data = remove_duplicate_indexes(data_windows)
+          windows_data = remove_duplicate_indexes(data.windows)
           add_windows(windows_data)
           @windows.each(&:update_index)
           @windows.each(&:setup)
         end
 
         def setup_base_index
-          @base_index = 0
           if option = options.find { |option| option.name == 'base-index' }
             @base_index = option.value.to_i
           end
