@@ -4,19 +4,25 @@ lib_path = File.expand_path('../../lib', __FILE__)
 $LOAD_PATH.unshift(lib_path) unless $LOAD_PATH.include?(lib_path)
 
 require 'automux'
+require 'optparse'
 
-args = ARGV.take_while { |argument| argument.match(/^\w/) }
-
-case args[0]
+case ARGV[0]
 when 'setup'
   Automux::Controller::Setup.new.clone_defaults
 when 'blueprint'
-  params = { blueprint_name: args[2], clone_name: args[3] }
-  Automux::Controller::Blueprints.new(params).public_send(args[1])
+  params = { blueprint_name: ARGV[2], clone_name: ARGV[3] }
+  Automux::Controller::Blueprints.new(params).public_send(ARGV[1])
 else
+  args = ARGV.take_while { |argument| argument.match(/^\w/) }
+
   params = {
     blueprint_name: args[0] || 'default',
     recipe_name:    args[1] || 'default'
   }
+
+  opts = (Automux::Cache::Blueprint.find_by_name(params[:blueprint_name]).opts rescue nil)
+  ARGV.shift while ARGV[0].to_s.match(/^\w/)
+  params[:options] = ARGV.getopts(*opts)
+
   Automux::Controller::Recipes.new(params).automate
 end

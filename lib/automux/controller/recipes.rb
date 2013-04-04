@@ -27,7 +27,7 @@ module Automux
       end
 
       def load_and_setup_session
-        @session = Automux::Core::Tmux::Session.new(@blueprint.read)
+        @session = Automux::Core::Tmux::Session.new(@blueprint.read(params[:options]))
         @session.setup
       end
     end

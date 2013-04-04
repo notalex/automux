@@ -1,39 +1,25 @@
 require 'yaml'
-require 'optparse'
 
 module Automux
   module Library
     class YamlParser
       class << self
-        def load_file(file)
-          data_string = File.read(file)
-          opts_replaced_string = replace_opts_with_user_input(data_string)
+        def load_file(file_path, parsed_options)
+          data_string = File.read(file_path)
+          opts_replaced_string = replace_opts(data_string, parsed_options)
           YAML.load(opts_replaced_string)
         end
 
         private ###
 
-        # Scan blueprint for patterns like "-\w" or '-\w' to get a options list.
-        # The options list is used by OptionsParser to read the options from commandline.
-        def replace_opts_with_user_input(string)
-          blueprint_opts = string.scan(/['|"]-(\w:?)['|"]/m).flatten
-          user_input_values = get_options(blueprint_opts)
-          replace_opts(string, user_input_values)
-        end
-
         # Replace patterns like "-\w" with matching commandline option.
-        def replace_opts(string, values)
-          values.each do |k, v|
+        def replace_opts(string, parsed_options)
+          parsed_options.each do |k, v|
             # Interpolate #{ v } - to substitute literal booleans.
             string.gsub!(/['|"]-(#{ k }):?['|"]/m, "#{ v }")
           end
 
           string
-        end
-
-        def get_options(opts)
-          ARGV.shift while ARGV[0].to_s.match(/^\w/)
-          ARGV.getopts(*opts)
         end
       end
     end
