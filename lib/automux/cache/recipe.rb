@@ -15,7 +15,7 @@ module Automux
       end
 
       def find_by_name(name)
-        Instances[name]
+        Instances[name] || Automux::Null::Recipe.new(name)
       end
 
       private ###

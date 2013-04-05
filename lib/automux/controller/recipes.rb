@@ -23,7 +23,7 @@ module Automux
       end
 
       def check_recipe
-        notify_error "Unable to find recipe named #{ params[:recipe_name] }.sh.erb" if @recipe.nil?
+        notify_error "Unable to find recipe named #{ @recipe.name }.sh.erb" if @recipe.is_a?(Automux::Null::Recipe)
       end
 
       def load_and_setup_session

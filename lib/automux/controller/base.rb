@@ -15,7 +15,7 @@ module Automux
       end
 
       def check_blueprint
-        notify_error "Unable to find blueprint named #{ params[:blueprint_name] }.yml" if @blueprint.nil?
+        notify_error "Unable to find blueprint named #{ @blueprint.name }.yml" if @blueprint.is_a?(Automux::Null::Blueprint)
       end
     end
   end

@@ -15,7 +15,7 @@ module Automux
       end
 
       def find_by_name(name)
-        Instances[name]
+        Instances[name] || Automux::Null::Blueprint.new(name)
       end
     end
   end
