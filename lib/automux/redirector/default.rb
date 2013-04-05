@@ -5,8 +5,8 @@ module Automux
 
       def initialize(argv)
         args = argv.take_while { |argument| argument.match(/^\w/) }
-        @blueprint_name = args[0] || 'default'
-        @recipe_name = args[1] || 'default'
+        @blueprint_name = args[0]
+        @recipe_name = args[1]
         @options = get_options(argv)
       end
 

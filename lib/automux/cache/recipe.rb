@@ -10,6 +10,8 @@ module Automux
           recipe = Automux::Core::Recipe.new(path)
           Instances[recipe.name] = recipe
         end
+
+        Instances[nil] = Instances['default']
       end
 
       def find_by_name(name)

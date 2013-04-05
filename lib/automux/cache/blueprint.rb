@@ -10,6 +10,8 @@ module Automux
           blueprint = Automux::Core::Blueprint.new(path)
           Instances[blueprint.name] = blueprint
         end
+
+        Instances[nil] = Instances['default']
       end
 
       def find_by_name(name)
