@@ -1,12 +1,11 @@
 module Automux
   module Core
     class Blueprint < Base
-      attr_reader :name, :path, :source_blueprint, :opts
+      attr_reader :name, :path, :source_blueprint
 
       def initialize(path)
         @name = File.basename(path, '.yml')
         @path = path
-        @opts = parse_opts(path) if saved_record?
       end
 
       def read(options = [])
@@ -26,13 +25,6 @@ module Automux
           path = File.join(Automux::Paths.blueprints_container, "#{ name }.yml")
           new(path)
         end
-      end
-
-      private ###
-
-      # Scan blueprint for patterns like "-\w" or '-\w' to get a options list.
-      def parse_opts(file_path)
-        File.read(file_path).scan(/['|"]-(\w:?)['|"]/m).flatten
       end
     end
   end
