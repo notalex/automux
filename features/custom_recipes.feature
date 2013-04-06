@@ -11,7 +11,7 @@ Feature: User using a custom recipe
         windows:
           - panes: vim
         """
-    When I invoke Automux with the recipe "test_recipe" and the blueprint "default"
+    When I invoke Automux with the recipe "test_recipe" and the blueprint "test_sample"
     Then the rendered sequence of shell commands should be
       """
       echo using the test blueprint
