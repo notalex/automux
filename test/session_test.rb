@@ -1,16 +1,28 @@
 require 'support/test_helper'
 
+def setup_session_with_windows(windows_data)
+  data = HashFactory.build(:session, windows: windows_data)
+  session = Automux::Core::Tmux::Session.new(data)
+  session.setup
+  session
+end
+
 describe 'Session' do
   it "should assign window indexes" do
-
     windows_data = [nil, nil, 1, 0].map do |i|
       HashFactory.build(:window, index: i)
     end
-    data = HashFactory.build(:session, windows: windows_data)
 
-    session = Automux::Core::Tmux::Session.new(data)
-    session.setup_windows_and_hooks
-
+    session = setup_session_with_windows(windows_data)
     session.window_indexes.must_equal [2, 3, 1, 0]
+  end
+
+  it "should assign overwrite conflicting indexes" do
+    windows_data = [nil, nil, 1, 1].map do |i|
+      HashFactory.build(:window, index: i)
+    end
+
+    session = setup_session_with_windows(windows_data)
+    session.window_indexes.must_equal [0, 2, 1, 1]
   end
 end

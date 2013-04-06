@@ -115,18 +115,6 @@ module Automux
           @windows << window
         end
 
-        # When multiple windows have been assigned the same index by the user, the additional window indexes will be removed.
-        def remove_duplicate_indexes(original_data)
-          non_indexed_data = original_data.select { |h| h['index'].to_s.empty? }
-          indexed_data = original_data - non_indexed_data
-
-          uniq_indexed_data = indexed_data.uniq { |h| h['index'] }
-          conflicting_data = indexed_data - uniq_indexed_data
-          removed_index_data = conflicting_data.each { |h| h.delete('index') }
-
-          non_indexed_data + uniq_indexed_data + removed_index_data
-        end
-
         def add_windows(windows_data)
           windows_data.each do |window_data|
             window = Automux::Core::Tmux::Window.new(self, window_data)
@@ -135,8 +123,7 @@ module Automux
         end
 
         def setup_windows
-          windows_data = remove_duplicate_indexes(data.windows)
-          add_windows(windows_data)
+          add_windows(data.windows)
           @windows.each(&:update_index)
           @windows.each(&:setup)
         end

@@ -60,7 +60,7 @@ In order to run the shell commands matching the given blueprint
       tmux attach-session -t test
       """
 
-  Scenario: Windows with clashing index values
+  Scenario: Windows with clashing indexes will be overwritten
     Given I have the following blueprint named "test_sample"
       """
       name: test
@@ -85,9 +85,9 @@ In order to run the shell commands matching the given blueprint
       tmux rename-window -t test:1 editor
       tmux send-keys -t test:1 "vim" C-m
 
-      tmux new-window -t test:0 2> /dev/null
-      tmux rename-window -t test:0 top
-      tmux send-keys -t test:0 "top" C-m
+      tmux new-window -t test:1 2> /dev/null
+      tmux rename-window -t test:1 top
+      tmux send-keys -t test:1 "top" C-m
 
       tmux attach-session -t test
       """
