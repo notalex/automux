@@ -24,7 +24,7 @@ module Automux
       # Scan blueprint for patterns like "-\w" or '-\w' to get a options list.
       def parse_opts(path)
         opts = File.read(path).scan(/['|"](-\w:?)['|"]/m).flatten
-        Hash[opts.map { |opt| [opt, false] }]
+        Hash[opts.zip]
       end
     end
   end

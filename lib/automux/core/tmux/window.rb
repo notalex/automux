@@ -9,6 +9,7 @@ module Automux
         attr_reader :data, :session, :index
         dup_attr_reader :panes, :hooks, :options
         def_delegators :data, :name, :root, :layout
+        def_delegator :data, :is_optional, :is_optional?
 
         def initialize(session, window_data)
           @session = session
@@ -20,9 +21,10 @@ module Automux
         end
 
         class Data
-          attr_reader :opt, :index, :name, :root, :layout, :hooks, :options, :panes
+          attr_reader :opt, :index, :name, :root, :layout, :hooks, :options, :panes, :is_optional
 
           def initialize(attributes)
+            @is_optional = attributes.has_key?('opt')
             @opt = attributes['opt']
             @index = attributes['index']
             @name = attributes['name']
@@ -53,7 +55,7 @@ module Automux
         end
 
         def opted_in?
-          return true if data.opt.nil?
+          return true unless is_optional?
 
           data.opt
         end
