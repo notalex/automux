@@ -14,8 +14,8 @@ module Automux
       # - [1, 2, 3]      =>     % [1, 2, 3]
       # = [1, 2, 3]      =>     <%= [1, 2, 3] %>
       def erb_parseable_template(string)
-        string.gsub(/^\s*-(.+)$/, '%\1').
-               gsub(/^\s*=(.+)$/, '<%=\1 %> ')
+        string.gsub(/^\s*-(.+)$/, '%\1')
+              .gsub(/^\s*=(.+)$/, '<%=\1 %> ')
       end
     end
   end
