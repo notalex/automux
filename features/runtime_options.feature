@@ -27,6 +27,7 @@ Feature: Providing runtime options for blueprints
     Given I have the following blueprint named "test_sample"
       """
       name: test
+      root: '-d:'
       windows:
         - name: git
           panes: git pull "-r:" master
@@ -82,3 +83,20 @@ Feature: Providing runtime options for blueprints
       tmux attach-session -t test
       """
 
+  Scenario: Passing recipe as the last argument after options
+    Given I have the following recipe named "test_recipe"
+      """
+      cd <%= root %>
+      """
+      And I have the following blueprint named "test_sample"
+        """
+        name: test
+        root: '-r:'
+        windows:
+          - panes: vim
+        """
+    When I invoke Automux with the arguments "test_sample -r projects test_recipe"
+    Then the rendered sequence of shell commands should be
+      """
+      cd projects
+      """

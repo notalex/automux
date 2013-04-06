@@ -41,3 +41,13 @@ When(/^I invoke Automux with the blueprint "(.*?)"$/) do |name|
   system %[bin/automux #{ name }]
   @results = File.read('/tmp/results')
 end
+
+When(/^I invoke Automux with the arguments "(.*?)"$/) do |arguments|
+  system %[bin/automux #{ arguments }]
+  @results = File.read('/tmp/results')
+end
+
+Given(/^I have the following recipe named "(.+)"$/) do |name, string|
+  path = File.join(Automux::Paths.recipes_container, "#{ name }.sh.erb")
+  File.open(path, 'w') { |f| f.write(string) }
+end

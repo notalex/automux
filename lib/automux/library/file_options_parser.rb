@@ -3,23 +3,28 @@ require 'optparse'
 module Automux
   module Library
     class FileOptionsParser
-      attr_reader :opts, :argv
+      attr_reader :options
 
-      def initialize(path, argv)
-        @opts = parse_opts(path)
-        @argv = argv
+      def initialize(path)
+        @options = parse_opts(path)
       end
 
       def getopts
-        argv.shift while argv[0].to_s.match(/^\w/)
-        argv.getopts(*opts)
+        OptionParser.new do |parser|
+          options.keys.each do |opt_name|
+            parser.on(opt_name) { |value| options[opt_name] = value }
+          end
+        end.parse!
+
+        options
       end
 
       private ###
 
       # Scan blueprint for patterns like "-\w" or '-\w' to get a options list.
       def parse_opts(path)
-        File.read(path).scan(/['|"]-(\w:?)['|"]/m).flatten
+        opts = File.read(path).scan(/['|"](-\w:?)['|"]/m).flatten
+        Hash[opts.map { |opt| [opt, false] }]
       end
     end
   end

@@ -16,7 +16,7 @@ module Automux
         def replace_opts(string, parsed_options)
           parsed_options.each do |k, v|
             # Interpolate #{ v } - to substitute literal booleans.
-            string.gsub!(/['|"]-(#{ k }):?['|"]/m, "#{ v }")
+            string.gsub!(/['|"](#{ k }):?['|"]/m, "#{ v }")
           end
 
           string
