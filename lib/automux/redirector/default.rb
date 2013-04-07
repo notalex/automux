@@ -25,7 +25,7 @@ module Automux
       end
 
       def non_opt_argument_or_nil(value)
-        value.slice(/^\w+$/)
+        value.to_s.slice(/^\w+$/)
       end
     end
   end
