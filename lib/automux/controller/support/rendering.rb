@@ -3,18 +3,15 @@ module Automux
     module Support
       module Rendering
 
+        def render(view)
+          path = deduce_full_path(view)
+          render_file(path)
+        end
+
         # There are two requirements to render a file.
         # 1. @binding
         # 2. file_name
-        def render(view)
-          path =
-          # If the full path to the file is given, use that instead.
-          if FileTest.exists?(view)
-            view
-          else
-            deduce_full_path(view)
-          end
-
+        def render_file(path)
           execute Automux::Library::MiniErb.new(File.read(path)).result(@binding)
         end
 

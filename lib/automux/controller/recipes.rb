@@ -9,7 +9,7 @@ module Automux
 
       def automate
         @binding = @session.get_binding
-        render @recipe.path
+        render_file @recipe.path
       end
 
       private ###
