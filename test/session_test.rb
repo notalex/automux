@@ -1,12 +1,5 @@
 require 'support/test_helper'
 
-def setup_session_with_windows(windows_data)
-  data = HashFactory.build(:session, windows: windows_data)
-  session = Automux::Core::Tmux::Session.new(data)
-  session.setup
-  session
-end
-
 describe 'Session' do
   it "should assign window indexes" do
     windows_data = [nil, nil, 1, 0].map do |i|
