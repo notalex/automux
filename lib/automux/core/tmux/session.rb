@@ -77,7 +77,7 @@ module Automux
           %[tmux select-layout -t #{ name }:#{ window.index } #{ window.layout }]
         end
 
-        def create_pane
+        def split_window
           %[tmux split-window]
         end
 

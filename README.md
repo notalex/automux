@@ -302,7 +302,7 @@ cd <%= root %>
 
   - if window.has_panes?
     - window.panes.each do |pane|
-      = create_pane if pane.index > 0
+      = split_window if pane.index > 0
       = send_keys(window, pane.command)
     - end
   - end

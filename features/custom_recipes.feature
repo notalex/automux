@@ -29,7 +29,7 @@ Feature: User using a custom recipe
         = new_window(window)
 
         - window.panes.each do |pane|
-          = create_pane if pane.index > 0
+          = split_window if pane.index > 0
           = send_keys(window, pane.command)
         - end
       - end
