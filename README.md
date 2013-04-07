@@ -182,7 +182,10 @@ windows:
 
 `automux test` will use the current directory.
 
-* Note: The option needs to be surounded by quotes. It makes Automux's job easier.
+#### Note
+
+* Since the opts are derived from the blueprint, the blueprint name needs to precede the opts as seen in the above commands.
+* The option needs to be surounded by quotes. It makes Automux's job easier.
 
 ## Custom defined window indexes
 
