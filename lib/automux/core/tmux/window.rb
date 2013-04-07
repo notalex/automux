@@ -40,18 +40,8 @@ module Automux
           %[tmux set-window-option -t #{ session.name }:#{ index } #{ option.name } '#{ option.value }']
         end
 
-        def setup
-          setup_options
-          setup_panes
-          setup_hooks
-        end
-
         def has_panes?
           !@panes.nil?
-        end
-
-        def update_index
-          @index ||= session.next_available_window_index
         end
 
         def opted_in?
@@ -62,6 +52,18 @@ module Automux
 
         def change_root_command
           %[cd #{ root }]
+        end
+
+        # :stopdoc:
+
+        def update_index
+          @index ||= session.next_available_window_index
+        end
+
+        def setup
+          setup_options
+          setup_panes
+          setup_hooks
         end
 
         def get_binding

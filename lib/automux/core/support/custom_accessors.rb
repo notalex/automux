@@ -1,7 +1,7 @@
 module Automux
   module Core
     module Support
-      module CustomAccessors
+      module CustomAccessors # :nodoc:
         def dup_attr_reader(*names)
           names.each do |name|
             define_method name do

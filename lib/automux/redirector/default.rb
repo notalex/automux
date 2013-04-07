@@ -1,6 +1,6 @@
 module Automux
   module Redirector
-    class Default
+    class Default  # :nodoc:
       attr_reader :blueprint_name, :recipe_name, :options
 
       def initialize(argv)

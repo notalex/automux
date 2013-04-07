@@ -1,6 +1,6 @@
 module Automux
   module Controller
-    class Recipes < Base
+    class Recipes < Base     # :nodoc:
       before_filter :load_recipe, only: :automate
       before_filter :load_blueprint, only: :automate
       before_filter :check_blueprint, only: :automate

@@ -1,6 +1,6 @@
 module Automux
   module Redirector
-    class Blueprint
+    class Blueprint  # :nodoc:
       attr_reader :action, :blueprint_name, :clone_name
 
       def initialize(args)

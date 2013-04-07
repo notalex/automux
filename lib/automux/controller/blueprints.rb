@@ -1,6 +1,6 @@
 module Automux
   module Controller
-    class Blueprints < Base
+    class Blueprints < Base  # :nodoc:
       before_filter :load_blueprint, only: [:edit, :copy, :cp, :delete, :rm]
       before_filter :check_blueprint, only: [:edit, :copy, :cp, :delete, :rm]
 

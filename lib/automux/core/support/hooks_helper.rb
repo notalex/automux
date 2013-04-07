@@ -12,7 +12,7 @@ module Automux
 
         private ###
 
-        def setup_hooks
+        def setup_hooks # :nodoc:
           data.hooks.each do |type, commands|
             [commands].flatten.each do |command|
               @hooks << Hook.new(self, type, command)

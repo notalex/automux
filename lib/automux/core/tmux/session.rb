@@ -63,8 +63,8 @@ module Automux
 
         # Links window from source session to current session. Window name or index must be provided.
         #
-        # E.g.: link_window(primary, finch, 3)
-        # This links a window named *finch* from an existing session named *primary* as 3rd window in current session.
+        # E.g.: +link_window+(primary, finch, 3)
+        # - links a window named _finch_ from an existing session named _primary_ as 3rd window in current session.
         def link_window(source_session_name, source_window_identifier, index = nil)
           %[tmux link-window -s #{ source_session_name }:#{ source_window_identifier } -t #{ name }:#{ index }]
         end
@@ -81,6 +81,12 @@ module Automux
           %[tmux split-window]
         end
 
+        def window_indexes
+          @windows.map(&:index).compact
+        end
+
+        # :stopdoc:
+
         def get_binding
           binding
         end
@@ -90,10 +96,6 @@ module Automux
           setup_base_index
           setup_windows
           setup_hooks
-        end
-
-        def window_indexes
-          @windows.map(&:index).compact
         end
 
         def next_available_window_index

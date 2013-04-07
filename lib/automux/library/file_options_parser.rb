@@ -2,7 +2,7 @@ require 'optparse'
 
 module Automux
   module Library
-    class FileOptionsParser
+    class FileOptionsParser  # :nodoc:
       attr_reader :path
 
       def initialize(path)

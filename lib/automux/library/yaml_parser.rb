@@ -2,7 +2,7 @@ require 'yaml'
 
 module Automux
   module Library
-    class YamlParser
+    class YamlParser  # :nodoc:
       class << self
         def load_file(file_path, parsed_options)
           data_string = File.read(file_path)

@@ -2,7 +2,7 @@ require 'erb'
 
 module Automux
   module Library
-    class MiniErb < ERB
+    class MiniErb < ERB  # :nodoc:
 
       def initialize(template)
         modified_template = erb_parseable_template(template)

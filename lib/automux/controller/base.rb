@@ -1,6 +1,6 @@
 module Automux
   module Controller
-    class Base
+    class Base     # :nodoc:
       include Support::Rendering
       extend Support::Filters
 

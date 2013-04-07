@@ -5,7 +5,7 @@ require 'automux/controller/recipes'
 require 'automux/controller/blueprints'
 require 'automux/controller/messages'
 
-module Automux::Controller
+module Automux::Controller # :nodoc:
   class << self
     def base_inheriting_classes
       constants.select { |constant_name| const_get(constant_name) < Base }

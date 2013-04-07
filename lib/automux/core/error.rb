@@ -7,7 +7,7 @@ module Automux
         @message = message
       end
 
-      def get_binding
+      def get_binding # :nodoc:
         binding
       end
     end

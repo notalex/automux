@@ -1,7 +1,7 @@
 module Automux
   module Core
     module Support
-      module OptionsHelper
+      module OptionsHelper # :nodoc:
         private ###
 
         def setup_options

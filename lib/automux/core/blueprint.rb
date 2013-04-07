@@ -12,7 +12,7 @@ module Automux
         Automux::Library::YamlParser.load_file(path, options)
       end
 
-      def get_binding
+      def get_binding # :nodoc:
         binding
       end
 

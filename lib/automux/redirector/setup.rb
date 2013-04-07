@@ -1,6 +1,6 @@
 module Automux
   module Redirector
-    class Setup
+    class Setup  # :nodoc:
       def initialize(args)
       end
 

@@ -1,7 +1,7 @@
 require 'automux/cache/blueprint'
 require 'automux/cache/recipe'
 
-module Automux::Cache
+module Automux::Cache # :nodoc: all
   class << self
     def module_constants
       constants.select { |constant_name| const_get(constant_name).is_a?(Module) }
