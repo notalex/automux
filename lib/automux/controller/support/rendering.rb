@@ -12,7 +12,9 @@ module Automux
         # 1. @binding
         # 2. file_name
         def render_file(path)
-          execute Automux::Library::MiniErb.new(File.read(path)).result(@binding)
+          result = Automux::Library::MiniErb.new(File.read(path)).result(@binding)
+          modified_result = remove_empty_lines(result)
+          environmental_execute modified_result
         end
 
         private ###
@@ -25,15 +27,17 @@ module Automux
           File.join(Paths.root, Paths.views, views_folder_name, "#{ view }.sh.erb")
         end
 
-        def execute(result)
-          modified_result = remove_empty_lines(result)
+        def environmental_execute(result)
+          send("#{ ENV['AUTOMUX_ENV'] }_execute", result)
+        end
 
-          if ENV['AUTOMUX_ENV'] == 'test'
-            File.open('/tmp/results', 'w') { |f| f.write(modified_result) }
-            exit
-          else
-            exec(modified_result)
-          end
+        def production_execute(result)
+          exec(result)
+        end
+
+        def test_execute(result)
+          File.open('/tmp/results', 'w') { |f| f.write(result) }
+          exit
         end
 
         # The recipe files can have empty lines for clarity. Remove them here.

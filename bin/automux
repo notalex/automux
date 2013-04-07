@@ -3,6 +3,7 @@
 lib_path = File.expand_path('../../lib', __FILE__)
 $LOAD_PATH.unshift(lib_path) unless $LOAD_PATH.include?(lib_path)
 
+ENV['AUTOMUX_ENV'] ||= 'production'
 require 'automux'
 
 probable_class_name = ARGV[0].to_s.to_sym.capitalize
