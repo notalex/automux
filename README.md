@@ -321,7 +321,7 @@ Its a simpler form of ERB much like [HAML](https://github.com/haml/haml) without
 ```sh
 $ automux default custom_recipe
 ```
-_Here default is the default blueprint name._
+_Here default is the **default** blueprint name._
 
 * Note: The default recipe comes from the Gem and cannot be overwritten. Running `automux default default` will invoke the recipe defined in the Gem instead of any user defined default. The primary reason for this approach is not the burden end users with the necessity to update their default recipe in future releases.
 
