@@ -18,6 +18,8 @@ module Automux
       def get_options
         blueprint = Automux::Cache::Blueprint.find_by_name(blueprint_name)
         Automux::Library::FileOptionsParser.new(blueprint.path).getopts
+      rescue OptionParser::InvalidOption
+        Automux::Controller::Messages.new(message: 'Incorrect option passed. Try -h to check valid options.').error
       end
 
       def params

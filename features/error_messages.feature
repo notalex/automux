@@ -34,3 +34,17 @@ Feature: Handling various errors with relevant messages
       """
       echo Unable to find blueprint named test_sample.yml
       """
+
+  Scenario: Trying incorrect blueprint opts
+    Given I have the following blueprint named "test_sample"
+      """
+      name: opt-less
+      root: '-r'
+      """
+    When Automux processes the blueprint "test_sample" with the following options
+      | option | value |
+      | -n     | test  |
+    Then the rendered sequence of shell commands should contain
+      """
+      echo Incorrect option passed. Try -h to check valid options.
+      """
