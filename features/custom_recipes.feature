@@ -56,7 +56,7 @@ Feature: User using a custom recipe
       tmux start-server
       tmux new-session -d -s test
 
-      tmux new-window -t test:2 2> /dev/null
+      tmux new-window -t test:2
       tmux send-keys -t test:2 "vim" C-m
 
       tmux attach-session -t test

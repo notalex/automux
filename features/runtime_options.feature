@@ -42,7 +42,7 @@ Feature: Providing runtime options for blueprints
       tmux start-server
       tmux new-session -d -s test
 
-      tmux new-window -t test:0 2> /dev/null
+      tmux move-window -t test:0
       tmux rename-window -t test:0 git
       tmux send-keys -t test:0 "git pull origin master" C-m
 
@@ -72,11 +72,11 @@ Feature: Providing runtime options for blueprints
       tmux start-server
       tmux new-session -d -s test
 
-      tmux new-window -t test:0 2> /dev/null
+      tmux move-window -t test:0
       tmux rename-window -t test:0 vim
       tmux send-keys -t test:0 "vim" C-m
 
-      tmux new-window -t test:1 2> /dev/null
+      tmux new-window -t test:1
       tmux rename-window -t test:1 top
       tmux send-keys -t test:1 "top" C-m
 

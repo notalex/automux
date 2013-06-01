@@ -44,11 +44,24 @@ module Automux
         end
 
         def new_window(window)
-          %[tmux new-window -t #{ name }:#{ window.index } 2> /dev/null]
+          %[tmux new-window -t #{ name }:#{ window.index }]
+        end
+
+        # The first window is created alongwith new-session and thus needs to be moved to its correct index.
+        def move_first_window_or_create_new(window)
+          if window == windows.first
+            move_window(window.index)
+          else
+            new_window(window)
+          end
         end
 
         def rename_window(window, window_name = window.name)
           %[tmux rename-window -t #{ name }:#{ window.index } #{ window_name }]
+        end
+
+        def move_window(index)
+          %[tmux move-window -t #{ name }:#{ index }]
         end
 
         def send_keys(identifier, command)

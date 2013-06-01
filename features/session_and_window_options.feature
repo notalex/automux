@@ -26,7 +26,7 @@ Feature: Handling session/window specific options
       tmux set-option status-left '#S>'
       tmux set-option status 'off'
 
-      tmux new-window -t test:0 2> /dev/null
+      tmux move-window -t test:0
       tmux send-keys -t test:0 "pwd" C-m
 
       tmux set-window-option -t test:0 automatic-rename 'off'
@@ -57,10 +57,10 @@ Feature: Handling session/window specific options
 
       tmux set-option base-index '2'
 
-      tmux new-window -t test:2 2> /dev/null
+      tmux move-window -t test:2
       tmux send-keys -t test:2 "pwd" C-m
 
-      tmux new-window -t test:3 2> /dev/null
+      tmux new-window -t test:3
       tmux send-keys -t test:3 "ls" C-m
 
       tmux attach-session -t test

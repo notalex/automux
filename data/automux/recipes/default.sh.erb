@@ -12,7 +12,7 @@ cd <%= root %>
 - end
 
 - windows.each do |window|
-  = new_window(window)
+  = move_first_window_or_create_new(window)
   = rename_window(window) if window.name
 
   - if window.has_panes?

@@ -33,7 +33,7 @@ In order to run the shell commands matching the given blueprint
       tmux start-server
       tmux new-session -d -s test
 
-      tmux new-window -t test:2 2> /dev/null
+      tmux move-window -t test:2
       tmux rename-window -t test:2 editor
 
       tmux send-keys -t test:2 "ls" C-m
@@ -43,15 +43,15 @@ In order to run the shell commands matching the given blueprint
       tmux send-keys -t test:2 "pwd" C-m
       tmux select-layout -t test:2 main-vertical
 
-      tmux new-window -t test:3 2> /dev/null
+      tmux new-window -t test:3
       tmux rename-window -t test:3 htop
       tmux send-keys -t test:3 "htop" C-m
 
-      tmux new-window -t test:1 2> /dev/null
+      tmux new-window -t test:1
       tmux rename-window -t test:1 tester
       tmux send-keys -t test:1 "pwd" C-m
 
-      tmux new-window -t test:0 2> /dev/null
+      tmux new-window -t test:0
       tmux rename-window -t test:0 zero
       tmux send-keys -t test:0 "pwd" C-m
       tmux split-window
@@ -81,11 +81,11 @@ In order to run the shell commands matching the given blueprint
       tmux start-server
       tmux new-session -d -s test
 
-      tmux new-window -t test:1 2> /dev/null
+      tmux move-window -t test:1
       tmux rename-window -t test:1 editor
       tmux send-keys -t test:1 "vim" C-m
 
-      tmux new-window -t test:1 2> /dev/null
+      tmux new-window -t test:1
       tmux rename-window -t test:1 top
       tmux send-keys -t test:1 "top" C-m
 
@@ -123,7 +123,7 @@ In order to run the shell commands matching the given blueprint
       tmux start-server
       tmux new-session -d -s name-less
 
-      tmux new-window -t name-less:0 2> /dev/null
+      tmux move-window -t name-less:0
       tmux send-keys -t name-less:0 "git pull origin master" C-m
 
       tmux attach-session -t name-less
@@ -145,7 +145,7 @@ In order to run the shell commands matching the given blueprint
       tmux start-server
       tmux -u2 new-session -d -s flagged
 
-      tmux new-window -t flagged:0 2> /dev/null
+      tmux move-window -t flagged:0
       tmux send-keys -t flagged:0 "vim" C-m
 
       tmux -u2 attach-session -t flagged
@@ -169,11 +169,11 @@ In order to run the shell commands matching the given blueprint
       tmux start-server
       tmux new-session -d -s test
 
-      tmux new-window -t test:0 2> /dev/null
+      tmux move-window -t test:0
       tmux send-keys -t test:0 "cd projects" C-m
       tmux send-keys -t test:0 "vim" C-m
 
-      tmux new-window -t test:1 2> /dev/null
+      tmux new-window -t test:1
       tmux send-keys -t test:1 "top" C-m
 
       tmux attach-session -t test

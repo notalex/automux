@@ -25,11 +25,11 @@ Feature: Using pre and post hooks for session
       tmux start-server
       tmux new-session -d -s hooked
 
-      tmux new-window -t hooked:0 2> /dev/null
+      tmux move-window -t hooked:0
       tmux rename-window -t hooked:0 one
       tmux send-keys -t hooked:0 "" C-m
 
-      tmux new-window -t hooked:1 2> /dev/null
+      tmux new-window -t hooked:1
       tmux rename-window -t hooked:1 two
       tmux send-keys -t hooked:1 "" C-m
 
@@ -65,10 +65,10 @@ Feature: Using pre and post hooks for session
       tmux start-server
       tmux new-session -d -s hooked
 
-      tmux new-window -t hooked:0 2> /dev/null
+      tmux move-window -t hooked:0
       tmux send-keys -t hooked:0 "pwd" C-m
 
-      tmux new-window -t hooked:1 2> /dev/null
+      tmux new-window -t hooked:1
       tmux rename-window -t hooked:1 echoed-window
 
       tmux send-keys -t hooked:1 "echo echoed-window start" C-m
