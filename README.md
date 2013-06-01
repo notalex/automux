@@ -182,6 +182,8 @@ windows:
 
 `automux test` will use the current directory.
 
+`automux test -h` will list the valid options.
+
 #### Note
 
 * Since the opts are derived from the blueprint, the blueprint name needs to precede the opts as seen in the above commands.
