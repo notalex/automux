@@ -253,10 +253,10 @@ This will execute the following steps
 * ... tmux startup stuff
 * ... create first window
 * cd automux
-* pwd   => ~/projects/automux
+* pwd #=> ~/projects/automux
 * vim
 * ... create second window
-* pwd    => ~/projects
+* pwd #=> ~/projects
 
 The session/window hooks have access to session and window objects respectively.
 
