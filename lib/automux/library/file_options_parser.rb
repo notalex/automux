@@ -30,7 +30,7 @@ module Automux
 
       # Scan for patterns like "-\w" or '-\w' to get a opts list.
       def get_file_opts(path)
-        File.read(path).scan(/['|"](-\w:?)['|"]/m).flatten
+        File.read(path).scan(/(?<='|")-\w:?(?='|")/m)
       end
     end
   end
