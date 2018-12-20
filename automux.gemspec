@@ -7,7 +7,7 @@ Gem::Specification.new do |gem|
   gem.name          = 'automux'
   gem.version       = Automux::Version::STRING
   gem.authors       = ["Alex Johnson"]
-  gem.email         = ["notalexjohnson@gmail.com"]
+  gem.email         = ["github.com/notalex"]
   gem.description   = %[Highly configurable Tmux Automator]
   gem.summary       = %[Automate tmux sessions stored in yaml files using custom recipes]
   gem.homepage      = %[https://github.com/notalex/automux]
